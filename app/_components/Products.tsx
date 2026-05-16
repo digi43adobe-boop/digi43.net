@@ -15,7 +15,6 @@ const products: Product[] = [
     description:
       "Bộ ứng dụng văn phòng đám mây kèm Teams, OneDrive, SharePoint và AI Copilot cho doanh nghiệp mọi quy mô.",
     features: ["Business Basic / Standard / Premium", "Enterprise E3 / E5", "Copilot for Microsoft 365"],
-    badge: "Bán chạy",
     tone: "from-sky-500 to-blue-600",
     iconPath:
       "M3 7a2 2 0 0 1 2-2h6v14H5a2 2 0 0 1-2-2V7zm10-2h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-6V5z",
@@ -44,7 +43,6 @@ const products: Product[] = [
     description:
       "Bảo vệ thiết bị đầu cuối, email, server với Kaspersky, Bitdefender, Trend Micro, ESET. Triển khai và monitoring trọn gói.",
     features: ["Endpoint Detection & Response", "Mail Security", "Network & Web Gateway"],
-    badge: "Tuân thủ",
     tone: "from-emerald-500 to-teal-600",
     iconPath: "M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z",
   },
@@ -82,7 +80,7 @@ export function Products() {
             Một đối tác — đầy đủ phần mềm bản quyền cho doanh nghiệp
           </h2>
           <p className="mt-4 text-lg text-ink-600 text-balance">
-            Hơn 40 hãng phần mềm hàng đầu thế giới được Digi43 phân phối chính
+            Các hãng phần mềm hàng đầu thế giới được Digi43 phân phối chính
             hãng, kèm dịch vụ triển khai, đào tạo và hỗ trợ kỹ thuật bằng tiếng
             Việt.
           </p>

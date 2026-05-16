@@ -28,8 +28,8 @@ export function Footer() {
             <Logo variant="light" />
             <p className="text-sm leading-relaxed text-ink-300 max-w-sm">
               Digi43 là đối tác cung cấp giải pháp phần mềm bản quyền cho doanh
-              nghiệp Việt Nam, được uỷ quyền chính thức bởi Microsoft, Adobe,
-              Autodesk và 40+ hãng phần mềm hàng đầu thế giới.
+              nghiệp Việt Nam — phân phối Microsoft, Adobe, Autodesk và nhiều
+              hãng phần mềm hàng đầu thế giới.
             </p>
             <ul className="space-y-2 text-sm text-ink-300">
               <li className="flex gap-2">

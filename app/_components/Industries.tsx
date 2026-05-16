@@ -15,14 +15,14 @@ export function Industries() {
       <div className="container-page">
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">
-            Khách hàng tiêu biểu
+            Lĩnh vực phục vụ
           </p>
           <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-950 text-balance">
-            Tin dùng bởi các doanh nghiệp đa ngành
+            Giải pháp phù hợp cho mọi ngành nghề
           </h2>
           <p className="mt-4 text-lg text-ink-600 text-balance">
-            Từ tập đoàn niêm yết tới startup tăng trưởng nhanh, Digi43 hiểu rõ
-            đặc thù license của từng lĩnh vực.
+            Từ doanh nghiệp lớn đến startup tăng trưởng nhanh — Digi43 tư vấn
+            license phù hợp với đặc thù vận hành của từng lĩnh vực.
           </p>
         </div>
 
@@ -44,19 +44,40 @@ export function Industries() {
 
         <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { v: "500+", l: "Doanh nghiệp tin dùng" },
-            { v: "120K+", l: "License đang quản lý" },
-            { v: "40+", l: "Hãng phần mềm đối tác" },
-            { v: "12 năm", l: "Kinh nghiệm thị trường" },
+            {
+              v: "Chính hãng",
+              l: "License xuất hoá đơn VAT, có chứng nhận uỷ quyền từ hãng",
+              iconPath: "M9 12l2 2 4-4M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",
+            },
+            {
+              v: "15 phút",
+              l: "SLA phản hồi yêu cầu hỗ trợ qua hotline, email hoặc Zalo",
+              iconPath: "M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zM12 6v6l4 2",
+            },
+            {
+              v: "24/7",
+              l: "Đội ngũ kỹ thuật tiếng Việt sẵn sàng xử lý sự cố",
+              iconPath: "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z",
+            },
+            {
+              v: "Tối ưu chi phí",
+              l: "Tư vấn lựa chọn gói EA / CSP / Volume Licensing phù hợp",
+              iconPath: "M3 17l6-6 4 4 8-8M14 7h7v7",
+            },
           ].map((s) => (
             <div
-              key={s.l}
-              className="rounded-2xl border border-ink-100 bg-gradient-to-br from-brand-50 to-white p-6 text-center"
+              key={s.v}
+              className="rounded-2xl border border-ink-100 bg-gradient-to-br from-brand-50 to-white p-6"
             >
-              <p className="text-3xl lg:text-4xl font-black text-brand-700 tracking-tight">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white border border-ink-100 text-brand-700">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d={s.iconPath} />
+                </svg>
+              </span>
+              <p className="mt-4 text-xl font-bold text-brand-700 tracking-tight">
                 {s.v}
               </p>
-              <p className="mt-2 text-sm text-ink-600 font-medium">{s.l}</p>
+              <p className="mt-1 text-sm text-ink-600 leading-relaxed">{s.l}</p>
             </div>
           ))}
         </div>

@@ -35,10 +35,10 @@ export function Hero() {
             </h1>
 
             <p className="max-w-2xl text-lg text-ink-200 text-balance">
-              Digi43 đồng hành cùng hơn 500+ doanh nghiệp Việt Nam trong việc
-              chuẩn hoá license phần mềm, tối ưu chi phí và đảm bảo tuân thủ —
-              từ Microsoft 365, Adobe Creative Cloud, Autodesk đến các giải pháp
-              bảo mật và hạ tầng cloud.
+              Digi43 là đối tác cung cấp phần mềm bản quyền chính hãng tại Việt
+              Nam — từ Microsoft 365, Adobe Creative Cloud, Autodesk đến các
+              giải pháp bảo mật và hạ tầng cloud. Tư vấn license, triển khai và
+              hỗ trợ kỹ thuật bằng tiếng Việt.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -61,15 +61,15 @@ export function Hero() {
 
             <dl className="grid grid-cols-3 gap-6 pt-6 max-w-xl">
               <div>
-                <dt className="text-xs text-ink-300 uppercase tracking-wider">Doanh nghiệp</dt>
-                <dd className="mt-1 text-2xl font-bold">500+</dd>
+                <dt className="text-xs text-ink-300 uppercase tracking-wider">Bản quyền</dt>
+                <dd className="mt-1 text-2xl font-bold">100% chính hãng</dd>
               </div>
               <div>
-                <dt className="text-xs text-ink-300 uppercase tracking-wider">Hãng đối tác</dt>
-                <dd className="mt-1 text-2xl font-bold">40+</dd>
+                <dt className="text-xs text-ink-300 uppercase tracking-wider">SLA phản hồi</dt>
+                <dd className="mt-1 text-2xl font-bold">15 phút</dd>
               </div>
               <div>
-                <dt className="text-xs text-ink-300 uppercase tracking-wider">Hỗ trợ</dt>
+                <dt className="text-xs text-ink-300 uppercase tracking-wider">Hỗ trợ tiếng Việt</dt>
                 <dd className="mt-1 text-2xl font-bold">24/7</dd>
               </div>
             </dl>
@@ -81,7 +81,7 @@ export function Hero() {
               <div className="relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-6 backdrop-blur glow">
                 <div className="flex items-center justify-between mb-5">
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-ink-300">License Portfolio</p>
+                    <p className="text-xs uppercase tracking-wider text-ink-300">License Portfolio · Minh hoạ</p>
                     <p className="text-lg font-semibold">Doanh nghiệp 250 nhân sự</p>
                   </div>
                   <span className="rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold px-2.5 py-1">

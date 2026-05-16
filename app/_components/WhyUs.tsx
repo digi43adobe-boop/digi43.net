@@ -11,7 +11,7 @@ const reasons = [
   },
   {
     title: "Triển khai trọn gói",
-    desc: "Đội ngũ kỹ sư có chứng chỉ MCSE, MCSA, AWS, Azure... cài đặt, migrate dữ liệu, cấu hình bảo mật theo best practices.",
+    desc: "Đội ngũ kỹ sư cài đặt, migrate dữ liệu và cấu hình bảo mật theo best practices của từng hãng.",
     iconPath: "M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 1 5.4-5.4l-2.5 2.5 1.4 1.4 2.5-2.5z",
   },
   {
@@ -41,7 +41,7 @@ export function WhyUs() {
               Vì sao chọn Digi43
             </p>
             <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-950 text-balance">
-              Đối tác phần mềm doanh nghiệp tin cậy của 500+ tổ chức
+              Đối tác phần mềm bản quyền dành cho doanh nghiệp hiện đại
             </h2>
             <p className="mt-5 text-lg text-ink-600">
               Chúng tôi không chỉ bán license. Digi43 đồng hành cùng doanh
