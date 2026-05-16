@@ -31,23 +31,36 @@ export function Footer() {
               nghiệp Việt Nam, được uỷ quyền chính thức bởi Microsoft, Adobe,
               Autodesk và 40+ hãng phần mềm hàng đầu thế giới.
             </p>
-            <div className="flex gap-3 pt-2">
-              {[
-                { name: "Facebook", path: "M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" },
-                { name: "LinkedIn", path: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 1 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" },
-                { name: "YouTube", path: "M22.5 6.4a3 3 0 0 0-2.1-2.1C18.5 4 12 4 12 4s-6.5 0-8.4.3A3 3 0 0 0 1.5 6.4 31 31 0 0 0 1 12a31 31 0 0 0 .5 5.6 3 3 0 0 0 2.1 2.1C5.5 20 12 20 12 20s6.5 0 8.4-.3a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23 12a31 31 0 0 0-.5-5.6zM10 15.5v-7l6 3.5z" },
-              ].map((s) => (
-                <a
-                  key={s.name}
-                  href="#"
-                  aria-label={s.name}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-ink-200 hover:bg-white/10 hover:text-white transition"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={s.path} />
-                  </svg>
+            <ul className="space-y-2 text-sm text-ink-300">
+              <li className="flex gap-2">
+                <span className="text-ink-400 shrink-0">Địa chỉ:</span>
+                <span>03 Quang Trung, P. Hải Châu, TP. Đà Nẵng</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-ink-400 shrink-0">Hotline:</span>
+                <a href="tel:+84905711739" className="hover:text-white transition">
+                  0905 711 739
                 </a>
-              ))}
+              </li>
+              <li className="flex gap-2">
+                <span className="text-ink-400 shrink-0">Email:</span>
+                <a href="mailto:sales@digi43.net" className="hover:text-white transition">
+                  sales@digi43.net
+                </a>
+              </li>
+            </ul>
+            <div className="flex gap-3 pt-1">
+              <a
+                href="https://www.facebook.com/digi43official/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-ink-200 hover:bg-white/10 hover:text-white transition"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+              </a>
             </div>
           </div>
 
@@ -70,9 +83,11 @@ export function Footer() {
         </div>
 
         <div className="mt-14 pt-8 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <p className="text-xs text-ink-400">
-            © {new Date().getFullYear()} Digi43 Software Licensing. Bản quyền
-            thuộc về Công ty TNHH Digi43.
+          <p className="text-xs text-ink-400 leading-relaxed">
+            © {new Date().getFullYear()} CÔNG TY TNHH DIGI43 MEDIA · MST: 0402269843
+            <br className="md:hidden" />
+            <span className="hidden md:inline"> · </span>
+            Bản quyền thuộc về Digi43 Media.
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink-400">
             <a href="#" className="hover:text-white transition">Điều khoản dịch vụ</a>

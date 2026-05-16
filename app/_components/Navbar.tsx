@@ -50,10 +50,10 @@ export function Navbar() {
 
         <div className="hidden lg:flex items-center gap-2">
           <a
-            href="tel:+842839999999"
+            href="tel:+84905711739"
             className="text-sm font-medium text-ink-700 hover:text-brand-600 transition"
           >
-            (028) 3999 9999
+            0905 711 739
           </a>
           <a
             href="#contact"
