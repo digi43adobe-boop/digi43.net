@@ -73,16 +73,21 @@ const products: Product[] = [
     ],
   },
   {
-    category: "Backup & Disaster Recovery",
-    title: "Veeam & Acronis",
+    category: "Operating System",
+    title: "Bản quyền Windows & Windows Server",
     description:
-      "Sao lưu, phục hồi và bảo vệ dữ liệu cho VMware, Hyper-V, Microsoft 365, cloud workloads. RPO/RTO tối ưu.",
+      "Cung cấp key bản quyền Windows 11/10 Pro, Enterprise và Windows Server chính hãng cho doanh nghiệp. Xuất hoá đơn VAT, kích hoạt vĩnh viễn / theo gói Volume Licensing.",
     features: [
-      "Veeam Data Platform",
-      "Acronis Cyber Protect",
-      "Microsoft 365 Backup",
+      "Windows 11 / 10 Pro · Enterprise",
+      "Windows Server 2022 / 2025",
+      "User CAL / Device CAL · Volume Licensing",
     ],
-    logos: [{ src: SI("veeam", "00B336"), alt: "Veeam" }],
+    logos: [
+      {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/500px-Windows_logo_-_2012.svg.png",
+        alt: "Windows",
+      },
+    ],
   },
   {
     category: "Cloud Infrastructure",
