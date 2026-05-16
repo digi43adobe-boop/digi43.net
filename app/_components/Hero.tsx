@@ -8,7 +8,11 @@ export function Hero() {
       />
       <div
         aria-hidden
-        className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-brand-500/20 blur-[100px]"
+        className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-pink-500/20 blur-[100px]"
+      />
+      <div
+        aria-hidden
+        className="absolute top-1/3 -left-32 h-[400px] w-[400px] rounded-full bg-fuchsia-500/15 blur-[100px]"
       />
 
       <div className="container-page relative">
@@ -24,7 +28,7 @@ export function Hero() {
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance leading-[1.05]">
               Giải pháp{" "}
-              <span className="bg-gradient-to-r from-brand-200 via-white to-brand-200 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-pink-400 via-fuchsia-300 to-sky-300 bg-clip-text text-transparent">
                 phần mềm bản quyền
               </span>{" "}
               cho doanh nghiệp hiện đại
@@ -86,18 +90,18 @@ export function Hero() {
                 </div>
                 <div className="space-y-3">
                   {[
-                    { name: "Microsoft 365 Business Premium", seats: "250 users", tone: "from-blue-500 to-cyan-500" },
-                    { name: "Adobe Creative Cloud for Teams", seats: "35 users", tone: "from-red-500 to-pink-500" },
-                    { name: "Autodesk AEC Collection", seats: "18 users", tone: "from-orange-500 to-amber-500" },
-                    { name: "Kaspersky Endpoint Security", seats: "280 endpoints", tone: "from-emerald-500 to-teal-500" },
-                    { name: "Veeam Backup & Replication", seats: "12 sockets", tone: "from-emerald-400 to-green-500" },
+                    { name: "Microsoft 365 Business Premium", seats: "250 users", logo: "https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg" },
+                    { name: "Adobe Creative Cloud for Teams", seats: "35 users", logo: "https://www.vectorlogo.zone/logos/adobe/adobe-icon.svg" },
+                    { name: "Autodesk AEC Collection", seats: "18 users", logo: "https://cdn.simpleicons.org/autodesk/ffffff" },
+                    { name: "Kaspersky Endpoint Security", seats: "280 endpoints", logo: "https://cdn.simpleicons.org/kaspersky/19B886" },
+                    { name: "Veeam Backup & Replication", seats: "12 sockets", logo: "https://cdn.simpleicons.org/veeam/00B336" },
                   ].map((row) => (
                     <div
                       key={row.name}
                       className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-3"
                     >
-                      <span className={`h-9 w-9 shrink-0 rounded-lg bg-gradient-to-br ${row.tone} grid place-items-center text-[10px] font-bold`}>
-                        {row.name.split(" ").slice(0, 1).map((w) => w[0]).join("")}
+                      <span className="h-9 w-9 shrink-0 rounded-lg bg-white/10 border border-white/10 grid place-items-center p-1.5">
+                        <img src={row.logo} alt="" loading="lazy" className="h-full w-full object-contain" />
                       </span>
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-sm font-medium">{row.name}</p>
