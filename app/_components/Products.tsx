@@ -37,7 +37,12 @@ const products: Product[] = [
     description:
       "Photoshop, Illustrator, Premiere Pro, After Effects... cho đội ngũ thiết kế, marketing và truyền thông.",
     features: ["Single App / All Apps", "Adobe Acrobat Pro", "Adobe Stock"],
-    logos: [{ src: VL("adobe"), alt: "Adobe" }],
+    logos: [
+      {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/500px-Adobe_Creative_Cloud_rainbow_icon.svg.png",
+        alt: "Adobe Creative Cloud",
+      },
+    ],
   },
   {
     category: "Engineering & Design",
