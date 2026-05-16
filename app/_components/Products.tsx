@@ -1,11 +1,22 @@
+type Logo = {
+  src: string;
+  alt: string;
+  /** Use white-monochrome filter for logos that contain dark text/marks */
+  mono?: boolean;
+};
+
 type Product = {
   category: string;
   title: string;
   description: string;
   features: string[];
-  accent: "blue" | "violet" | "amber" | "green" | "teal" | "indigo";
-  iconPath: string;
+  logos: Logo[];
 };
+
+const VL = (slug: string) =>
+  `https://www.vectorlogo.zone/logos/${slug}/${slug}-icon.svg`;
+const SI = (slug: string, color = "ffffff") =>
+  `https://cdn.simpleicons.org/${slug}/${color}`;
 
 const products: Product[] = [
   {
@@ -13,10 +24,12 @@ const products: Product[] = [
     title: "Microsoft 365 & Copilot",
     description:
       "Bộ ứng dụng văn phòng đám mây kèm Teams, OneDrive, SharePoint và AI Copilot cho doanh nghiệp mọi quy mô.",
-    features: ["Business Basic / Standard / Premium", "Enterprise E3 / E5", "Copilot for Microsoft 365"],
-    accent: "blue",
-    iconPath:
-      "M3 7a2 2 0 0 1 2-2h6v14H5a2 2 0 0 1-2-2V7zm10-2h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-6V5z",
+    features: [
+      "Business Basic / Standard / Premium",
+      "Enterprise E3 / E5",
+      "Copilot for Microsoft 365",
+    ],
+    logos: [{ src: VL("microsoft"), alt: "Microsoft" }],
   },
   {
     category: "Creative Suite",
@@ -24,61 +37,90 @@ const products: Product[] = [
     description:
       "Photoshop, Illustrator, Premiere Pro, After Effects... cho đội ngũ thiết kế, marketing và truyền thông.",
     features: ["Single App / All Apps", "Adobe Acrobat Pro", "Adobe Stock"],
-    accent: "violet",
-    iconPath: "M12 3l9 4-9 4-9-4 9-4zm0 8l9 4-9 4-9-4 9-4z",
+    logos: [{ src: VL("adobe"), alt: "Adobe" }],
   },
   {
     category: "Engineering & Design",
     title: "Autodesk AEC & M&E",
     description:
       "AutoCAD, Revit, Civil 3D, Inventor, 3ds Max — giải pháp BIM/CAD đầy đủ cho ngành xây dựng, cơ khí và sản xuất.",
-    features: ["AEC Collection", "Product Design & Manufacturing", "Media & Entertainment"],
-    accent: "amber",
-    iconPath: "M3 21V3h18v18H3zm6-6h6V9H9v6z",
+    features: [
+      "AEC Collection",
+      "Product Design & Manufacturing",
+      "Media & Entertainment",
+    ],
+    logos: [{ src: SI("autodesk"), alt: "Autodesk", mono: true }],
   },
   {
     category: "Cybersecurity",
     title: "Endpoint Security & EDR",
     description:
       "Bảo vệ thiết bị đầu cuối, email, server với Kaspersky, Bitdefender, Trend Micro, ESET. Triển khai và monitoring trọn gói.",
-    features: ["Endpoint Detection & Response", "Mail Security", "Network & Web Gateway"],
-    accent: "green",
-    iconPath: "M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z",
+    features: [
+      "Endpoint Detection & Response",
+      "Mail Security",
+      "Network & Web Gateway",
+    ],
+    logos: [
+      { src: SI("kaspersky", "19B886"), alt: "Kaspersky" },
+      { src: SI("bitdefender", "ED1C24"), alt: "Bitdefender" },
+      { src: SI("trendmicro", "D71920"), alt: "Trend Micro" },
+    ],
   },
   {
     category: "Backup & Disaster Recovery",
     title: "Veeam & Acronis",
     description:
       "Sao lưu, phục hồi và bảo vệ dữ liệu cho VMware, Hyper-V, Microsoft 365, cloud workloads. RPO/RTO tối ưu.",
-    features: ["Veeam Data Platform", "Acronis Cyber Protect", "Microsoft 365 Backup"],
-    accent: "teal",
-    iconPath:
-      "M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5",
+    features: [
+      "Veeam Data Platform",
+      "Acronis Cyber Protect",
+      "Microsoft 365 Backup",
+    ],
+    logos: [{ src: SI("veeam", "00B336"), alt: "Veeam" }],
   },
   {
     category: "Cloud Infrastructure",
     title: "AWS, Azure & Google Cloud",
     description:
       "Hỗ trợ mua credit, thiết kế kiến trúc và tối ưu chi phí FinOps cho các workload chạy trên cloud công cộng.",
-    features: ["Reserved Instances / Savings Plans", "Cloud cost optimization", "Migration & Modernization"],
-    accent: "indigo",
-    iconPath:
-      "M7 18a4 4 0 0 1-.88-7.9 6 6 0 0 1 11.77 1.36A4.5 4.5 0 0 1 17 21H8a4.5 4.5 0 0 1-1-3z",
+    features: [
+      "Reserved Instances / Savings Plans",
+      "Cloud cost optimization",
+      "Migration & Modernization",
+    ],
+    logos: [
+      { src: VL("amazon_aws"), alt: "AWS" },
+      { src: VL("microsoft_azure"), alt: "Azure" },
+      { src: VL("google_cloud"), alt: "Google Cloud" },
+    ],
   },
 ];
 
-const accentMap = {
-  blue: { bg: "bg-interface-blue/15", ring: "ring-interface-blue/40", text: "text-polar-blue" },
-  violet: { bg: "bg-cosmic-violet/15", ring: "ring-cosmic-violet/40", text: "text-cosmic-violet" },
-  amber: { bg: "bg-amber-500/15", ring: "ring-amber-500/40", text: "text-amber-300" },
-  green: { bg: "bg-spring-green/15", ring: "ring-spring-green/40", text: "text-neon-green" },
-  teal: { bg: "bg-teal-500/15", ring: "ring-teal-500/40", text: "text-teal-300" },
-  indigo: { bg: "bg-indigo-500/15", ring: "ring-indigo-500/40", text: "text-indigo-300" },
-} as const;
+function LogoBadge({ logo, size = "lg" }: { logo: Logo; size?: "lg" | "sm" }) {
+  const dim = size === "lg" ? "h-12 w-12" : "h-10 w-10";
+  const img = size === "lg" ? "max-h-7 max-w-8" : "max-h-6 max-w-7";
+  return (
+    <span
+      className={`inline-flex ${dim} items-center justify-center rounded-xl border border-subtle-gray bg-white/[0.06]`}
+      title={logo.alt}
+    >
+      <img
+        src={logo.src}
+        alt={logo.alt}
+        loading="lazy"
+        className={`${img} object-contain ${logo.mono ? "logo-mono" : ""}`}
+      />
+    </span>
+  );
+}
 
 export function Products() {
   return (
-    <section id="products" className="relative bg-code-canvas py-24 lg:py-32 border-t border-subtle-gray">
+    <section
+      id="products"
+      className="relative bg-code-canvas py-24 lg:py-32 border-t border-subtle-gray"
+    >
       <div aria-hidden className="absolute inset-0 bg-dots opacity-50 pointer-events-none" />
       <div className="container-page relative">
         <div className="max-w-3xl">
@@ -97,29 +139,49 @@ export function Products() {
 
         <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {products.map((p) => {
-            const acc = accentMap[p.accent];
+            const isMulti = p.logos.length > 1;
             return (
               <article
                 key={p.title}
                 className="card-floating group relative flex flex-col p-7"
               >
-                <span
-                  className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${acc.bg} ${acc.text} ring-1 ${acc.ring}`}
-                  aria-hidden
-                >
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={p.iconPath} />
-                  </svg>
-                </span>
+                <div className="flex items-center gap-2">
+                  {p.logos.map((logo) => (
+                    <LogoBadge
+                      key={logo.alt}
+                      logo={logo}
+                      size={isMulti ? "sm" : "lg"}
+                    />
+                  ))}
+                </div>
+
                 <p className="mt-5 text-xs font-semibold uppercase tracking-wider text-muted-text">
                   {p.category}
                 </p>
-                <h3 className="mt-1 text-xl font-semibold text-ghost-white">{p.title}</h3>
-                <p className="mt-2 text-sm text-faded-silver leading-relaxed">{p.description}</p>
+                <h3 className="mt-1 text-xl font-semibold text-ghost-white">
+                  {p.title}
+                </h3>
+                <p className="mt-2 text-sm text-faded-silver leading-relaxed">
+                  {p.description}
+                </p>
                 <ul className="mt-4 space-y-1.5">
                   {p.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm text-faded-silver">
-                      <svg className={`mt-0.5 shrink-0 ${acc.text}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <li
+                      key={f}
+                      className="flex items-start gap-2 text-sm text-faded-silver"
+                    >
+                      <svg
+                        className="mt-0.5 shrink-0 text-polar-blue"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden
+                      >
                         <path d="M5 12l5 5L20 7" />
                       </svg>
                       {f}
@@ -131,7 +193,17 @@ export function Products() {
                   className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium link-accent"
                 >
                   Tư vấn license phù hợp
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden
+                  >
                     <path d="M5 12h14M13 5l7 7-7 7" />
                   </svg>
                 </a>
