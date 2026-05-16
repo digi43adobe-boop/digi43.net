@@ -2,11 +2,61 @@
 
 import { useState } from "react";
 
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+
+type Status = "idle" | "submitting" | "success" | "error";
+
 export function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState<string>("");
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("submitting");
+    setErrorMsg("");
+
+    const formEl = e.currentTarget;
+    const formData = new FormData(formEl);
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    if (!accessKey) {
+      setStatus("error");
+      setErrorMsg(
+        "Form chưa được cấu hình. Vui lòng gọi hotline 0905 711 739 hoặc email sales@digi43.net."
+      );
+      return;
+    }
+
+    formData.append("access_key", accessKey);
+    formData.append("subject", "Yêu cầu báo giá mới từ digi43.net");
+    formData.append("from_name", "Digi43 Landing Page");
+
+    try {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        formEl.reset();
+      } else {
+        setStatus("error");
+        setErrorMsg(data.message ?? "Có lỗi xảy ra. Vui lòng thử lại.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg(
+        "Không thể kết nối tới máy chủ. Vui lòng kiểm tra mạng và thử lại."
+      );
+    }
+  }
 
   return (
-    <section id="contact" className="relative bg-code-canvas py-24 lg:py-32 border-t border-subtle-gray overflow-hidden">
+    <section
+      id="contact"
+      className="relative bg-code-canvas py-24 lg:py-32 border-t border-subtle-gray overflow-hidden"
+    >
       <div aria-hidden className="absolute -top-32 right-1/4 h-[500px] w-[500px] bg-violet-glow blur-3xl opacity-25" />
 
       <div className="container-page relative">
@@ -52,10 +102,20 @@ export function Contact() {
 
           <div className="lg:col-span-7">
             <div className="card-floating p-6 lg:p-10">
-              {submitted ? (
+              {status === "success" ? (
                 <div className="py-16 text-center">
                   <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-spring-green/20 ring-1 ring-spring-green/40 text-neon-green">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden
+                    >
                       <path d="M5 12l5 5L20 7" />
                     </svg>
                   </div>
@@ -63,40 +123,64 @@ export function Contact() {
                     Cảm ơn bạn đã liên hệ!
                   </h3>
                   <p className="mt-2 text-faded-silver">
+                    Yêu cầu đã được gửi tới sales@digi43.net.
+                    <br />
                     Đội ngũ Digi43 sẽ gọi lại trong vòng 24 giờ làm việc.
                   </p>
                   <button
-                    onClick={() => setSubmitted(false)}
+                    onClick={() => setStatus("idle")}
                     className="mt-6 text-sm font-medium link-accent"
                   >
                     Gửi yêu cầu khác
                   </button>
                 </div>
               ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSubmitted(true);
-                  }}
-                  className="space-y-5"
-                >
+                <form onSubmit={onSubmit} className="space-y-5">
+                  {/* Honeypot for bots */}
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    style={{ display: "none" }}
+                    tabIndex={-1}
+                    aria-hidden="true"
+                  />
+
                   <div className="grid sm:grid-cols-2 gap-5">
-                    <Field label="Họ và tên" name="name" placeholder="Nguyễn Văn A" required />
-                    <Field label="Số điện thoại" name="phone" type="tel" placeholder="0901 234 567" required />
+                    <Field
+                      label="Họ và tên"
+                      name="name"
+                      placeholder="Nguyễn Văn A"
+                      required
+                    />
+                    <Field
+                      label="Số điện thoại"
+                      name="phone"
+                      type="tel"
+                      placeholder="0901 234 567"
+                      required
+                    />
                   </div>
                   <div className="grid sm:grid-cols-2 gap-5">
-                    <Field label="Email công ty" name="email" type="email" placeholder="ban@congty.vn" required />
-                    <Field label="Tên doanh nghiệp" name="company" placeholder="Công ty TNHH ..." required />
+                    <Field
+                      label="Email công ty"
+                      name="email"
+                      type="email"
+                      placeholder="ban@congty.vn"
+                      required
+                    />
+                    <Field
+                      label="Tên doanh nghiệp"
+                      name="company"
+                      placeholder="Công ty TNHH ..."
+                      required
+                    />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-faded-silver mb-1.5">
                       Giải pháp quan tâm
                     </label>
-                    <select
-                      name="solution"
-                      className="input-field"
-                    >
+                    <select name="solution" className="input-field" defaultValue="Microsoft 365 / Copilot">
                       <option className="bg-deep-space">Microsoft 365 / Copilot</option>
                       <option className="bg-deep-space">Adobe Creative Cloud</option>
                       <option className="bg-deep-space">Autodesk (AutoCAD, Revit...)</option>
@@ -108,10 +192,14 @@ export function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-faded-silver mb-1.5">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-faded-silver mb-1.5"
+                    >
                       Mô tả nhu cầu (tuỳ chọn)
                     </label>
                     <textarea
+                      id="message"
                       name="message"
                       rows={4}
                       placeholder="Số lượng license, thời điểm triển khai, yêu cầu đặc thù..."
@@ -119,19 +207,59 @@ export function Contact() {
                     />
                   </div>
 
+                  {status === "error" && (
+                    <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3">
+                      {errorMsg}
+                    </p>
+                  )}
+
                   <button
                     type="submit"
-                    className="btn-primary w-full justify-center py-3.5"
+                    disabled={status === "submitting"}
+                    className="btn-primary w-full justify-center py-3.5 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Gửi yêu cầu báo giá
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                      <path d="M5 12h14M13 5l7 7-7 7" />
-                    </svg>
+                    {status === "submitting" ? (
+                      <>
+                        <svg
+                          className="animate-spin"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          aria-hidden
+                        >
+                          <path d="M21 12a9 9 0 1 1-6.2-8.6" />
+                        </svg>
+                        Đang gửi...
+                      </>
+                    ) : (
+                      <>
+                        Gửi yêu cầu báo giá
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden
+                        >
+                          <path d="M5 12h14M13 5l7 7-7 7" />
+                        </svg>
+                      </>
+                    )}
                   </button>
 
                   <p className="text-xs text-muted-text text-center">
                     Bằng việc gửi form, bạn đồng ý với{" "}
-                    <a href="#" className="link-accent">chính sách bảo mật</a>{" "}
+                    <a href="#" className="link-accent">
+                      chính sách bảo mật
+                    </a>{" "}
                     của Digi43.
                   </p>
                 </form>
@@ -159,7 +287,10 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="block text-sm font-medium text-faded-silver mb-1.5">
+      <label
+        htmlFor={name}
+        className="block text-sm font-medium text-faded-silver mb-1.5"
+      >
         {label} {required && <span className="text-accent-pink">*</span>}
       </label>
       <input
@@ -188,12 +319,24 @@ function ContactItem({
   const content = (
     <div className="flex items-start gap-4">
       <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-interface-blue/15 ring-1 ring-interface-blue/30 text-polar-blue">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden
+        >
           <path d={iconPath} />
         </svg>
       </span>
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-text">{title}</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-text">
+          {title}
+        </p>
         <p className="mt-0.5 text-base font-medium text-ghost-white">{value}</p>
       </div>
     </div>
