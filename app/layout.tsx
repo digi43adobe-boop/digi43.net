@@ -6,6 +6,7 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin", "vietnamese"],
   display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -48,7 +49,7 @@ export default function RootLayout({
       lang="vi"
       className={`${inter.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col bg-white text-slate-900 font-sans">
+      <body className="min-h-full flex flex-col font-sans">
         {children}
       </body>
     </html>

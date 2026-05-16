@@ -33,25 +33,24 @@ const reasons = [
 
 export function WhyUs() {
   return (
-    <section id="why" className="relative bg-white py-24 lg:py-32">
-      <div className="container-page">
+    <section id="why" className="relative bg-deep-space py-24 lg:py-32 overflow-hidden">
+      <div aria-hidden className="absolute top-1/2 -translate-y-1/2 right-[-200px] h-[600px] w-[600px] rounded-full bg-blue-violet-orb blur-3xl opacity-15" />
+
+      <div className="container-page relative">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5 lg:sticky lg:top-28">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-polar-blue">
               Vì sao chọn Digi43
             </p>
-            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-950 text-balance">
+            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-[40px] font-bold tracking-tight text-ghost-white text-balance leading-[1.15]">
               Đối tác phần mềm bản quyền dành cho doanh nghiệp hiện đại
             </h2>
-            <p className="mt-5 text-lg text-ink-600">
+            <p className="mt-5 text-lg text-faded-silver">
               Chúng tôi không chỉ bán license. Digi43 đồng hành cùng doanh
               nghiệp ở mọi giai đoạn — từ tư vấn, mua sắm, triển khai đến vận
               hành và tối ưu lâu dài.
             </p>
-            <a
-              href="#contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink-950 px-5 py-3 text-sm font-semibold text-white hover:bg-ink-800 transition"
-            >
+            <a href="#contact" className="btn-outline mt-8">
               Đặt lịch tư vấn 1:1
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <path d="M5 12h14M13 5l7 7-7 7" />
@@ -63,18 +62,18 @@ export function WhyUs() {
             {reasons.map((r, i) => (
               <div
                 key={r.title}
-                className="card-hover rounded-2xl border border-ink-100 bg-white p-6"
+                className="card-floating p-6"
               >
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-interface-blue/15 text-polar-blue ring-1 ring-interface-blue/30">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                       <path d={r.iconPath} />
                     </svg>
                   </span>
-                  <span className="text-xs font-semibold text-ink-400">0{i + 1}</span>
+                  <span className="text-xs font-mono text-muted-text">0{i + 1}</span>
                 </div>
-                <h3 className="mt-4 text-lg font-bold text-ink-950">{r.title}</h3>
-                <p className="mt-2 text-sm text-ink-600 leading-relaxed">{r.desc}</p>
+                <h3 className="mt-4 text-lg font-semibold text-ghost-white">{r.title}</h3>
+                <p className="mt-2 text-sm text-faded-silver leading-relaxed">{r.desc}</p>
               </div>
             ))}
           </div>

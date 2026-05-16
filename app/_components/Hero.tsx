@@ -1,125 +1,141 @@
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-ink-950 text-white pt-32 pb-24 lg:pt-40 lg:pb-32">
-      <div aria-hidden className="absolute inset-0 hero-grid opacity-40" />
+    <section className="relative isolate overflow-hidden bg-deep-space text-ghost-white pt-32 pb-24 lg:pt-40 lg:pb-32">
+      {/* Deep blue gradient base */}
+      <div aria-hidden className="absolute inset-0 bg-deep-gradient opacity-80" />
+      {/* Grid overlay */}
+      <div aria-hidden className="absolute inset-0 bg-grid opacity-40" />
+      {/* Glowing orbs */}
       <div
         aria-hidden
-        className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[1100px] rounded-full bg-brand-600/30 blur-[120px]"
+        className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[1100px] bg-violet-glow blur-3xl opacity-70"
       />
       <div
         aria-hidden
-        className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-pink-500/20 blur-[100px]"
+        className="absolute bottom-0 right-[-200px] h-[460px] w-[460px] rounded-full bg-blue-violet-orb blur-3xl opacity-40 animate-float-slow"
       />
       <div
         aria-hidden
-        className="absolute top-1/3 -left-32 h-[400px] w-[400px] rounded-full bg-fuchsia-500/15 blur-[100px]"
+        className="absolute top-1/3 -left-32 h-[380px] w-[380px] rounded-full bg-vapor-trail blur-3xl opacity-30"
       />
 
       <div className="container-page relative">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-8">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-brand-100 backdrop-blur">
+          <div className="lg:col-span-7 space-y-7">
+            <span className="pill">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                <span className="absolute inline-flex h-full w-full animate-ping-soft rounded-full bg-neon-green opacity-70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-neon-green" />
               </span>
-              Microsoft Solutions Partner · Authorized Reseller
+              <span className="text-polar-blue">Microsoft Solutions Partner · Authorized Reseller</span>
             </span>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance leading-[1.05]">
+            <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-bold tracking-tight text-balance leading-[1.05]">
               Giải pháp{" "}
-              <span className="bg-gradient-to-r from-pink-400 via-fuchsia-300 to-sky-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-accent-pink via-cosmic-violet to-polar-blue bg-clip-text text-transparent">
                 phần mềm bản quyền
-              </span>{" "}
+              </span>
+              <br className="hidden sm:block" />
               cho doanh nghiệp hiện đại
             </h1>
 
-            <p className="max-w-2xl text-lg text-ink-200 text-balance">
+            <p className="max-w-2xl text-lg text-faded-silver text-balance">
               Digi43 là đối tác cung cấp phần mềm bản quyền chính hãng tại Việt
               Nam — từ Microsoft 365, Adobe Creative Cloud, Autodesk đến các
               giải pháp bảo mật và hạ tầng cloud. Tư vấn license, triển khai và
               hỗ trợ kỹ thuật bằng tiếng Việt.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <a
-                href="#contact"
-                className="group inline-flex items-center gap-2 rounded-full bg-white text-ink-950 px-6 py-3.5 text-sm font-semibold shadow-lg shadow-brand-600/20 hover:bg-brand-100 transition"
-              >
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <a href="#contact" className="btn-primary">
                 Nhận tư vấn miễn phí
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-0.5" aria-hidden>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <path d="M5 12h14M13 5l7 7-7 7" />
                 </svg>
               </a>
-              <a
-                href="#products"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur hover:bg-white/10 transition"
-              >
+              <a href="#products" className="btn-outline">
                 Xem danh mục giải pháp
               </a>
             </div>
 
-            <dl className="grid grid-cols-3 gap-6 pt-6 max-w-xl">
-              <div>
-                <dt className="text-xs text-ink-300 uppercase tracking-wider">Bản quyền</dt>
-                <dd className="mt-1 text-2xl font-bold">100% chính hãng</dd>
+            <dl className="grid grid-cols-3 gap-6 pt-8 max-w-2xl border-t border-subtle-gray">
+              <div className="pt-6">
+                <dt className="text-xs uppercase tracking-[0.18em] text-muted-text">Bản quyền</dt>
+                <dd className="mt-2 text-xl font-semibold text-ghost-white">100% chính hãng</dd>
               </div>
-              <div>
-                <dt className="text-xs text-ink-300 uppercase tracking-wider">SLA phản hồi</dt>
-                <dd className="mt-1 text-2xl font-bold">15 phút</dd>
+              <div className="pt-6">
+                <dt className="text-xs uppercase tracking-[0.18em] text-muted-text">SLA phản hồi</dt>
+                <dd className="mt-2 text-xl font-semibold text-ghost-white">15 phút</dd>
               </div>
-              <div>
-                <dt className="text-xs text-ink-300 uppercase tracking-wider">Hỗ trợ tiếng Việt</dt>
-                <dd className="mt-1 text-2xl font-bold">24/7</dd>
+              <div className="pt-6">
+                <dt className="text-xs uppercase tracking-[0.18em] text-muted-text">Hỗ trợ tiếng Việt</dt>
+                <dd className="mt-2 text-xl font-semibold text-ghost-white">24/7</dd>
               </div>
             </dl>
           </div>
 
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-brand-400/40 to-brand-700/40 blur-2xl" aria-hidden />
-              <div className="relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-6 backdrop-blur glow">
-                <div className="flex items-center justify-between mb-5">
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-ink-300">License Portfolio · Minh hoạ</p>
-                    <p className="text-lg font-semibold">Doanh nghiệp 250 nhân sự</p>
-                  </div>
-                  <span className="rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold px-2.5 py-1">
-                    Active
-                  </span>
+              {/* Glow behind card */}
+              <div aria-hidden className="absolute -inset-6 bg-blue-violet-orb opacity-25 blur-3xl rounded-full" />
+
+              <div className="relative card-code overflow-hidden">
+                {/* Top bar like an IDE */}
+                <div className="flex items-center gap-2 px-5 py-3 border-b border-subtle-gray">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+                  <span className="ml-3 text-[11px] text-muted-text font-mono">portfolio.json · minh hoạ</span>
                 </div>
-                <div className="space-y-3">
-                  {[
-                    { name: "Microsoft 365 Business Premium", seats: "250 users", logo: "https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg" },
-                    { name: "Adobe Creative Cloud for Teams", seats: "35 users", logo: "https://www.vectorlogo.zone/logos/adobe/adobe-icon.svg" },
-                    { name: "Autodesk AEC Collection", seats: "18 users", logo: "https://cdn.simpleicons.org/autodesk/ffffff" },
-                    { name: "Kaspersky Endpoint Security", seats: "280 endpoints", logo: "https://cdn.simpleicons.org/kaspersky/19B886" },
-                    { name: "Veeam Backup & Replication", seats: "12 sockets", logo: "https://cdn.simpleicons.org/veeam/00B336" },
-                  ].map((row) => (
-                    <div
-                      key={row.name}
-                      className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-3"
-                    >
-                      <span className="h-9 w-9 shrink-0 rounded-lg bg-white/10 border border-white/10 grid place-items-center p-1.5">
-                        <img src={row.logo} alt="" loading="lazy" className="h-full w-full object-contain" />
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-medium">{row.name}</p>
-                        <p className="text-xs text-ink-300">{row.seats}</p>
-                      </div>
-                      <span className="text-xs text-emerald-300 font-medium">✓</span>
+
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-5">
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.18em] text-muted-text">License Portfolio</p>
+                      <p className="text-base font-semibold mt-1">Doanh nghiệp 250 nhân sự</p>
                     </div>
-                  ))}
-                </div>
-                <div className="mt-5 flex items-center justify-between rounded-xl bg-brand-600/20 border border-brand-400/30 p-3">
-                  <div>
-                    <p className="text-xs text-brand-200">Tiết kiệm hàng năm</p>
-                    <p className="text-lg font-bold text-white">~ 320 triệu VND</p>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-spring-green/15 text-neon-green text-[11px] font-semibold px-2.5 py-1 border border-spring-green/30">
+                      <span className="h-1.5 w-1.5 rounded-full bg-neon-green" />
+                      Active
+                    </span>
                   </div>
-                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-200" aria-hidden>
-                    <path d="M3 17l6-6 4 4 8-8" />
-                    <path d="M14 7h7v7" />
-                  </svg>
+
+                  <div className="space-y-2.5">
+                    {[
+                      { name: "Microsoft 365 Business Premium", seats: "250 users", logo: "https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg" },
+                      { name: "Adobe Creative Cloud for Teams", seats: "35 users", logo: "https://www.vectorlogo.zone/logos/adobe/adobe-icon.svg" },
+                      { name: "Autodesk AEC Collection", seats: "18 users", logo: "https://cdn.simpleicons.org/autodesk/ffffff" },
+                      { name: "Kaspersky Endpoint Security", seats: "280 endpoints", logo: "https://cdn.simpleicons.org/kaspersky/19B886" },
+                      { name: "Veeam Backup & Replication", seats: "12 sockets", logo: "https://cdn.simpleicons.org/veeam/00B336" },
+                    ].map((row) => (
+                      <div
+                        key={row.name}
+                        className="flex items-center gap-3 rounded-xl border border-subtle-gray bg-white/[0.02] hover:bg-white/[0.04] transition px-3 py-2.5"
+                      >
+                        <span className="h-8 w-8 shrink-0 rounded-md bg-white/5 border border-subtle-gray grid place-items-center p-1.5">
+                          <img src={row.logo} alt="" loading="lazy" className="h-full w-full object-contain" />
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-sm font-medium text-ghost-white">{row.name}</p>
+                          <p className="text-xs text-muted-text font-mono">{row.seats}</p>
+                        </div>
+                        <svg className="text-neon-green shrink-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                          <path d="M5 12l5 5L20 7" />
+                        </svg>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-5 flex items-center justify-between rounded-xl border border-interface-blue/40 bg-interface-blue/10 p-3.5">
+                    <div>
+                      <p className="text-[11px] text-polar-blue uppercase tracking-wider">Tiết kiệm hàng năm</p>
+                      <p className="text-lg font-bold text-ghost-white mt-0.5">~ 320 triệu VND</p>
+                    </div>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-polar-blue" aria-hidden>
+                      <path d="M3 17l6-6 4 4 8-8" />
+                      <path d="M14 7h7v7" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>

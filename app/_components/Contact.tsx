@@ -6,23 +6,25 @@ export function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="contact" className="relative bg-white py-24 lg:py-32">
-      <div className="container-page">
+    <section id="contact" className="relative bg-code-canvas py-24 lg:py-32 border-t border-subtle-gray overflow-hidden">
+      <div aria-hidden className="absolute -top-32 right-1/4 h-[500px] w-[500px] bg-violet-glow blur-3xl opacity-25" />
+
+      <div className="container-page relative">
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-polar-blue">
               Liên hệ Digi43
             </p>
-            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-950 text-balance">
+            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-[40px] font-bold tracking-tight text-ghost-white text-balance leading-[1.15]">
               Nhận báo giá license trong 24 giờ
             </h2>
-            <p className="mt-4 text-lg text-ink-600">
+            <p className="mt-4 text-lg text-faded-silver">
               Để lại thông tin, đội ngũ tư vấn của Digi43 sẽ liên hệ với bạn
               trong vòng 24 giờ làm việc kèm theo bảng so sánh các phương án
               license phù hợp nhất.
             </p>
 
-            <div className="mt-10 space-y-5">
+            <div className="mt-10 space-y-4">
               <ContactItem
                 title="Hotline doanh nghiệp"
                 value="0905 711 739"
@@ -49,23 +51,23 @@ export function Contact() {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="rounded-3xl border border-ink-100 bg-gradient-to-br from-ink-50 to-white p-6 lg:p-10 shadow-sm">
+            <div className="card-floating p-6 lg:p-10">
               {submitted ? (
                 <div className="py-16 text-center">
-                  <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                  <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-spring-green/20 ring-1 ring-spring-green/40 text-neon-green">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                       <path d="M5 12l5 5L20 7" />
                     </svg>
                   </div>
-                  <h3 className="mt-6 text-2xl font-bold text-ink-950">
+                  <h3 className="mt-6 text-2xl font-bold text-ghost-white">
                     Cảm ơn bạn đã liên hệ!
                   </h3>
-                  <p className="mt-2 text-ink-600">
+                  <p className="mt-2 text-faded-silver">
                     Đội ngũ Digi43 sẽ gọi lại trong vòng 24 giờ làm việc.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-6 text-sm font-semibold text-brand-700 hover:underline"
+                    className="mt-6 text-sm font-medium link-accent"
                   >
                     Gửi yêu cầu khác
                   </button>
@@ -88,48 +90,48 @@ export function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-ink-800 mb-1.5">
+                    <label className="block text-sm font-medium text-faded-silver mb-1.5">
                       Giải pháp quan tâm
                     </label>
                     <select
                       name="solution"
-                      className="w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-900 focus:border-brand-500 focus:ring-2 focus:ring-brand-100 outline-none transition"
+                      className="input-field"
                     >
-                      <option>Microsoft 365 / Copilot</option>
-                      <option>Adobe Creative Cloud</option>
-                      <option>Autodesk (AutoCAD, Revit...)</option>
-                      <option>Bảo mật endpoint (Kaspersky / Bitdefender / Trend Micro)</option>
-                      <option>Backup & DR (Veeam / Acronis)</option>
-                      <option>Cloud (AWS / Azure / Google Cloud)</option>
-                      <option>Khác / Tư vấn tổng thể</option>
+                      <option className="bg-deep-space">Microsoft 365 / Copilot</option>
+                      <option className="bg-deep-space">Adobe Creative Cloud</option>
+                      <option className="bg-deep-space">Autodesk (AutoCAD, Revit...)</option>
+                      <option className="bg-deep-space">Bảo mật endpoint (Kaspersky / Bitdefender / Trend Micro)</option>
+                      <option className="bg-deep-space">Backup & DR (Veeam / Acronis)</option>
+                      <option className="bg-deep-space">Cloud (AWS / Azure / Google Cloud)</option>
+                      <option className="bg-deep-space">Khác / Tư vấn tổng thể</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-ink-800 mb-1.5">
+                    <label className="block text-sm font-medium text-faded-silver mb-1.5">
                       Mô tả nhu cầu (tuỳ chọn)
                     </label>
                     <textarea
                       name="message"
                       rows={4}
                       placeholder="Số lượng license, thời điểm triển khai, yêu cầu đặc thù..."
-                      className="w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-100 outline-none transition resize-none"
+                      className="input-field resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 hover:bg-brand-700 transition"
+                    className="btn-primary w-full justify-center py-3.5"
                   >
                     Gửi yêu cầu báo giá
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-0.5" aria-hidden>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                       <path d="M5 12h14M13 5l7 7-7 7" />
                     </svg>
                   </button>
 
-                  <p className="text-xs text-ink-500 text-center">
+                  <p className="text-xs text-muted-text text-center">
                     Bằng việc gửi form, bạn đồng ý với{" "}
-                    <a href="#" className="underline hover:text-brand-700">chính sách bảo mật</a>{" "}
+                    <a href="#" className="link-accent">chính sách bảo mật</a>{" "}
                     của Digi43.
                   </p>
                 </form>
@@ -157,8 +159,8 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="block text-sm font-medium text-ink-800 mb-1.5">
-        {label} {required && <span className="text-red-500">*</span>}
+      <label htmlFor={name} className="block text-sm font-medium text-faded-silver mb-1.5">
+        {label} {required && <span className="text-accent-pink">*</span>}
       </label>
       <input
         id={name}
@@ -166,7 +168,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-100 outline-none transition"
+        className="input-field"
       />
     </div>
   );
@@ -185,14 +187,14 @@ function ContactItem({
 }) {
   const content = (
     <div className="flex items-start gap-4">
-      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-interface-blue/15 ring-1 ring-interface-blue/30 text-polar-blue">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d={iconPath} />
         </svg>
       </span>
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wider text-ink-500">{title}</p>
-        <p className="mt-0.5 text-base font-semibold text-ink-900">{value}</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-text">{title}</p>
+        <p className="mt-0.5 text-base font-medium text-ghost-white">{value}</p>
       </div>
     </div>
   );
