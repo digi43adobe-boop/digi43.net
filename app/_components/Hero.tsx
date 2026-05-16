@@ -85,7 +85,7 @@ export function Hero() {
                   <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
                   <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
                   <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-                  <span className="ml-3 text-[11px] text-muted-text font-mono">portfolio.json · minh hoạ</span>
+                  <span className="ml-3 text-[11px] text-muted-text tracking-wide uppercase">Cấu hình minh hoạ</span>
                 </div>
 
                 <div className="p-5">
@@ -102,22 +102,42 @@ export function Hero() {
 
                   <div className="space-y-2.5">
                     {[
-                      { name: "Microsoft 365 Business Premium", seats: "250 users", logo: "https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg" },
-                      { name: "Adobe Creative Cloud for Teams", seats: "35 users", logo: "https://www.vectorlogo.zone/logos/adobe/adobe-icon.svg" },
-                      { name: "Autodesk AEC Collection", seats: "18 users", logo: "https://cdn.simpleicons.org/autodesk/ffffff" },
-                      { name: "Kaspersky Endpoint Security", seats: "280 endpoints", logo: "https://cdn.simpleicons.org/kaspersky/19B886" },
-                      { name: "Veeam Backup & Replication", seats: "12 sockets", logo: "https://cdn.simpleicons.org/veeam/00B336" },
+                      {
+                        name: "Microsoft 365 Business Premium",
+                        seats: "250 users",
+                        logo: "https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg",
+                      },
+                      {
+                        name: "Adobe Creative Cloud for Teams",
+                        seats: "35 users",
+                        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/500px-Adobe_Creative_Cloud_rainbow_icon.svg.png",
+                      },
+                      {
+                        name: "Autodesk AEC Collection",
+                        seats: "18 users",
+                        logo: "https://cdn.simpleicons.org/autodesk/ffffff",
+                      },
+                      {
+                        name: "Windows 11 Enterprise",
+                        seats: "250 devices",
+                        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/500px-Windows_logo_-_2012.svg.png",
+                      },
+                      {
+                        name: "Kaspersky Endpoint Security",
+                        seats: "280 endpoints",
+                        logo: "https://cdn.simpleicons.org/kaspersky/5fed83",
+                      },
                     ].map((row) => (
                       <div
                         key={row.name}
-                        className="flex items-center gap-3 rounded-xl border border-subtle-gray bg-white/[0.02] hover:bg-white/[0.04] transition px-3 py-2.5"
+                        className="flex items-center gap-3 rounded-xl border border-subtle-gray bg-white/[0.03] hover:bg-white/[0.06] transition px-3 py-2.5"
                       >
-                        <span className="h-8 w-8 shrink-0 rounded-md bg-white/5 border border-subtle-gray grid place-items-center p-1.5">
+                        <span className="h-8 w-8 shrink-0 rounded-md bg-white/[0.08] border border-subtle-gray grid place-items-center p-1.5">
                           <img src={row.logo} alt="" loading="lazy" className="h-full w-full object-contain" />
                         </span>
                         <div className="min-w-0 flex-1">
                           <p className="truncate text-sm font-medium text-ghost-white">{row.name}</p>
-                          <p className="text-xs text-muted-text font-mono">{row.seats}</p>
+                          <p className="text-xs text-muted-text">{row.seats}</p>
                         </div>
                         <svg className="text-neon-green shrink-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                           <path d="M5 12l5 5L20 7" />
