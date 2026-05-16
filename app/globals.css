@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #d9e6ff;
+  --color-brand-200: #bcd2ff;
+  --color-brand-300: #8eb5ff;
+  --color-brand-400: #5b8dff;
+  --color-brand-500: #3563f6;
+  --color-brand-600: #2148e6;
+  --color-brand-700: #1a37c4;
+  --color-brand-800: #1a309c;
+  --color-brand-900: #1c2e7c;
+  --color-brand-950: #131c4a;
+
+  --color-ink-50: #f6f7fb;
+  --color-ink-100: #ebedf5;
+  --color-ink-200: #d3d8e8;
+  --color-ink-300: #aab2d0;
+  --color-ink-400: #7e87b1;
+  --color-ink-500: #5c6694;
+  --color-ink-600: #475079;
+  --color-ink-700: #3a4163;
+  --color-ink-800: #252a45;
+  --color-ink-900: #161a2e;
+  --color-ink-950: #0b0e1d;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #0b0e1d;
+  }
+  html, body {
+    background: var(--background);
+    color: var(--foreground);
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--color-brand-500) 30%, transparent);
+    color: white;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .container-page {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+    max-width: 1200px;
+  }
+  @media (min-width: 768px) {
+    .container-page { padding-inline: 2rem; }
+  }
+  .text-balance { text-wrap: balance; }
+
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .glow {
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.06) inset,
+      0 30px 80px -30px rgba(53, 99, 246, 0.55);
+  }
+
+  .card-hover {
+    transition:
+      transform .25s ease,
+      box-shadow .25s ease,
+      border-color .25s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-brand-300);
+    box-shadow: 0 18px 40px -22px rgba(15, 23, 80, 0.25);
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
 }
