@@ -15,17 +15,10 @@ type Props = {
 /**
  * Decorative ambient video background.
  *
- * Renders a single `<video>` element on both server and client.
- * The `poster` attribute means the user sees the image instantly, and
- * if the browser blocks autoplay (mobile data-saver, OS-level
- * `prefers-reduced-motion`, slow network) the poster stays visible —
- * graceful fallback without an SSR/hydration mismatch.
- *
- * - autoplay + muted + playsInline = mobile-safe.
- * - preload="none" defers the network cost until the browser actually
- *   wants to play.
- * - IntersectionObserver pauses while off-screen to save battery / data.
- * - `prefers-reduced-motion: reduce` -> pause and freeze on the poster.
+ * `src` and `poster` are wired through `data-*` attributes and promoted
+ * onto the real DOM after mount. This sidesteps a quirk in the current
+ * React 19 + Turbopack pipeline where `src`/`poster` set declaratively on
+ * `<video>` inside a Client Component are dropped from the SSR HTML.
  */
 export function VideoBackground({
   src,
@@ -38,6 +31,15 @@ export function VideoBackground({
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    // Promote data-* attributes to real ones so the browser starts loading.
+    const realSrc = video.getAttribute("data-src");
+    const realPoster = video.getAttribute("data-poster");
+    if (realPoster && !video.poster) video.poster = realPoster;
+    if (realSrc && !video.src) {
+      video.src = realSrc;
+      video.load();
+    }
 
     const reduceMotion =
       typeof window !== "undefined" &&
@@ -76,11 +78,15 @@ export function VideoBackground({
         loop
         playsInline
         preload="none"
+        data-src={src}
+        data-poster={poster}
         className="absolute inset-0 h-full w-full object-cover"
-        poster={poster}
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+        style={{
+          backgroundImage: `url("${poster}")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
       <div
         className="absolute inset-0 bg-deep-space"
         style={{ opacity: overlay }}
