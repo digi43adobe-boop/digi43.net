@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { isAuthenticated } from "../lib/auth";
 import { getAllPosts } from "../lib/posts";
-import { deletePostAction } from "./actions";
+import { DeleteButton } from "./_components/DeleteButton";
 
 export const dynamic = "force-dynamic";
 
@@ -87,18 +87,7 @@ export default async function AdminIndex() {
                 >
                   Sửa
                 </Link>
-                <form action={deletePostAction}>
-                  <input type="hidden" name="slug" value={post.slug} />
-                  <button
-                    type="submit"
-                    className="rounded-md px-3 py-1.5 text-xs font-medium text-red-300 hover:bg-red-500/10 hover:text-red-200 transition"
-                    onClick={() => {
-                      /* confirm via form action; native confirm needs client comp */
-                    }}
-                  >
-                    Xoá
-                  </button>
-                </form>
+                <DeleteButton slug={post.slug} title={post.content.vi.title} />
               </div>
             </li>
           ))}
