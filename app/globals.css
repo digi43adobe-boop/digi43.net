@@ -103,6 +103,7 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 1.4;
+    white-space: nowrap;
     transition: background-color 0.18s ease, transform 0.18s ease;
   }
   .btn-primary:hover { background: var(--color-spring-green-hover); }
@@ -119,6 +120,7 @@
     background: transparent;
     font-weight: 500;
     font-size: 14px;
+    white-space: nowrap;
     transition: border-color .18s ease, background-color .18s ease;
   }
   .btn-outline:hover {
@@ -136,6 +138,7 @@
     font-size: 14px;
     background: transparent;
     border-radius: var(--radius-btn);
+    white-space: nowrap;
     transition: color .18s ease, background-color .18s ease;
   }
   .btn-ghost:hover {

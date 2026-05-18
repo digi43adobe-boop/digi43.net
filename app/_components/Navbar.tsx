@@ -64,7 +64,7 @@ export function Navbar({ dict, lang }: { dict: NavDict; lang: Locale }) {
           <LangSwitcher current={lang} />
           <a
             href="tel:+84905711739"
-            className="text-sm font-medium text-faded-silver hover:text-polar-blue transition"
+            className="text-sm font-medium text-faded-silver hover:text-polar-blue transition whitespace-nowrap"
           >
             {dict.phone}
           </a>
