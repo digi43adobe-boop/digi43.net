@@ -14,7 +14,7 @@
     "about": "Về chúng tôi",
     "phone": "0905 711 739",
     "cta": "Đăng ký tư vấn",
-    "insights": "Insights"
+    "insights": "Tin tức"
   },
   "hero": {
     "badge": "Enterprise Software Solutions",
@@ -332,12 +332,8 @@
             "href": "/about"
           },
           {
-            "label": "Insights",
-            "href": "/blog"
-          },
-          {
             "label": "Tin tức",
-            "href": "#"
+            "href": "/blog"
           },
           {
             "label": "Tuyển dụng",
@@ -413,18 +409,18 @@
     }
   },
   "blog": {
-    "metaTitle": "Insights & Tin tức",
+    "metaTitle": "Tin tức Digi43",
     "metaDescription": "Bài viết và tài liệu kỹ thuật về license phần mềm, triển khai Adobe, Microsoft 365 và tối ưu chi phí cloud cho doanh nghiệp Việt Nam.",
-    "kicker": "Insights",
-    "title": "Bài viết & tài liệu kỹ thuật",
+    "kicker": "Tin tức",
+    "title": "Tin tức & tài liệu kỹ thuật",
     "subtitle": "Hướng dẫn thực dụng về license, deployment và governance — viết bởi đội ngũ Digi43.",
     "readingMinutes": "{n} phút đọc",
     "readMore": "Đọc bài",
-    "backToBlog": "← Quay lại Insights",
+    "backToBlog": "← Quay lại Tin tức",
     "publishedOn": "Đăng ngày",
     "ctaTitle": "Cần tư vấn cho dự án phần mềm của bạn?",
     "ctaButton": "Đăng ký tư vấn",
     "relatedTitle": "Bài viết liên quan",
-    "navLink": "Insights"
+    "navLink": "Tin tức"
   }
 }

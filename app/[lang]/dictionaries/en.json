@@ -14,7 +14,7 @@
     "about": "About",
     "phone": "+84 905 711 739",
     "cta": "Request consultation",
-    "insights": "Insights"
+    "insights": "News"
   },
   "hero": {
     "badge": "Enterprise Software Solutions",
@@ -332,12 +332,8 @@
             "href": "/about"
           },
           {
-            "label": "Insights",
-            "href": "/blog"
-          },
-          {
             "label": "News",
-            "href": "#"
+            "href": "/blog"
           },
           {
             "label": "Careers",
@@ -413,18 +409,18 @@
     }
   },
   "blog": {
-    "metaTitle": "Insights & News",
+    "metaTitle": "Digi43 News",
     "metaDescription": "Articles and technical briefs on software licensing, Adobe deployments, Microsoft 365, and cloud cost optimization for enterprises in Vietnam.",
-    "kicker": "Insights",
+    "kicker": "News",
     "title": "Articles & technical briefs",
     "subtitle": "Practical guidance on licensing, deployment, and governance — from the Digi43 team.",
     "readingMinutes": "{n} min read",
     "readMore": "Read article",
-    "backToBlog": "← Back to Insights",
+    "backToBlog": "← Back to News",
     "publishedOn": "Published",
     "ctaTitle": "Need advice on your software project?",
     "ctaButton": "Request consultation",
     "relatedTitle": "Related articles",
-    "navLink": "Insights"
+    "navLink": "News"
   }
 }

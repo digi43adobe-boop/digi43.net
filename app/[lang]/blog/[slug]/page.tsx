@@ -1,30 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getDictionary, hasLocale, locales, type Locale } from "../../dictionaries";
+import { getDictionary, hasLocale, type Locale } from "../../dictionaries";
 import { Navbar } from "../../../_components/Navbar";
 import { Footer } from "../../../_components/Footer";
 import { VideoBackground } from "../../../_components/VideoBackground";
 import { TECH_BG } from "../../../_components/video-bg-config";
-import {
-  getAllPosts,
-  getAllSlugs,
-  getPostBySlug,
-  type Block,
-} from "../posts";
+import { getAllPosts, getPostBySlug } from "../../../lib/posts";
+import type { Block } from "../../../lib/types";
 
-export function generateStaticParams() {
-  return getAllSlugs().flatMap((slug) =>
-    locales.map((lang) => ({ lang, slug }))
-  );
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(
   props: PageProps<"/[lang]/blog/[slug]">
 ): Promise<Metadata> {
   const { lang, slug } = await props.params;
   if (!hasLocale(lang)) return {};
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) return {};
   const c = post.content[lang as Locale];
 
@@ -46,6 +38,13 @@ export async function generateMetadata(
       publishedTime: post.date,
       authors: [post.author],
       tags: [c.category],
+      images: post.thumbnailUrl ? [{ url: post.thumbnailUrl }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: c.title,
+      description: c.excerpt,
+      images: post.thumbnailUrl ? [post.thumbnailUrl] : undefined,
     },
   };
 }
@@ -55,8 +54,8 @@ export default async function BlogPostPage(
 ) {
   const { lang, slug } = await props.params;
   if (!hasLocale(lang)) notFound();
-  const post = getPostBySlug(slug);
-  if (!post) notFound();
+  const post = await getPostBySlug(slug);
+  if (!post || !post.published) notFound();
   const dict = await getDictionary(lang);
   const c = post.content[lang as Locale];
 
@@ -65,17 +64,16 @@ export default async function BlogPostPage(
     { year: "numeric", month: "long", day: "numeric" }
   );
 
-  // Up to 2 related posts (same category, different slug)
-  const related = getAllPosts()
+  const allPosts = await getAllPosts();
+  const related = allPosts
     .filter(
       (p) =>
         p.slug !== post.slug && p.content[lang as Locale].category === c.category
     )
     .slice(0, 2);
-  // Fall back to most recent if no same-category siblings
   const sidebar = related.length
     ? related
-    : getAllPosts().filter((p) => p.slug !== post.slug).slice(0, 2);
+    : allPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
 
   return (
     <>
@@ -124,6 +122,21 @@ export default async function BlogPostPage(
           </div>
         </section>
 
+        {post.thumbnailUrl && (
+          <section className="border-b border-subtle-gray bg-code-canvas/40">
+            <div className="container-page max-w-4xl py-10 lg:py-12">
+              <div className="overflow-hidden rounded-2xl border border-subtle-gray">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={post.thumbnailUrl}
+                  alt=""
+                  className="w-full aspect-[16/9] object-cover"
+                />
+              </div>
+            </div>
+          </section>
+        )}
+
         <section className="py-16 lg:py-20">
           <div className="container-page max-w-3xl">
             <article className="space-y-5 text-base lg:text-lg text-faded-silver leading-relaxed">
@@ -166,17 +179,28 @@ export default async function BlogPostPage(
                     <Link
                       key={p.slug}
                       href={`/${lang}/blog/${p.slug}`}
-                      className="card-floating group flex flex-col p-6"
+                      className="card-floating group flex flex-col overflow-hidden no-underline"
                     >
-                      <span className="pill !text-polar-blue w-fit">
-                        {pc.category}
-                      </span>
-                      <h3 className="mt-3 text-lg font-semibold text-ghost-white group-hover:text-polar-blue transition leading-snug">
-                        {pc.title}
-                      </h3>
-                      <p className="mt-2 text-sm text-faded-silver line-clamp-2">
-                        {pc.excerpt}
-                      </p>
+                      <div className="relative aspect-[16/9] overflow-hidden bg-code-canvas">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={p.thumbnailUrl}
+                          alt=""
+                          loading="lazy"
+                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <span className="pill !text-polar-blue w-fit">
+                          {pc.category}
+                        </span>
+                        <h3 className="mt-3 text-lg font-semibold text-ghost-white group-hover:text-polar-blue transition leading-snug">
+                          {pc.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-faded-silver line-clamp-2">
+                          {pc.excerpt}
+                        </p>
+                      </div>
                     </Link>
                   );
                 })}

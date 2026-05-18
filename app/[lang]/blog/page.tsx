@@ -6,7 +6,9 @@ import { Navbar } from "../../_components/Navbar";
 import { Footer } from "../../_components/Footer";
 import { VideoBackground } from "../../_components/VideoBackground";
 import { TECH_BG } from "../../_components/video-bg-config";
-import { getAllPosts } from "./posts";
+import { getAllPosts } from "../../lib/posts";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(
   props: PageProps<"/[lang]/blog">
@@ -34,7 +36,7 @@ export default async function BlogIndexPage(
   const { lang } = await props.params;
   if (!hasLocale(lang)) notFound();
   const dict = await getDictionary(lang);
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
 
   const dateFormatter = new Intl.DateTimeFormat(
     lang === "vi" ? "vi-VN" : "en-US",
@@ -68,45 +70,68 @@ export default async function BlogIndexPage(
 
         <section className="py-16 lg:py-20">
           <div className="container-page">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {posts.map((post) => {
-                const c = post.content[lang as Locale];
-                return (
-                  <Link
-                    key={post.slug}
-                    href={`/${lang}/blog/${post.slug}`}
-                    className="card-floating group flex flex-col p-7 no-underline"
-                  >
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="pill !text-polar-blue">{c.category}</span>
-                      <span className="text-xs text-muted-text font-mono">
-                        {dict.blog.readingMinutes.replace(
-                          "{n}",
-                          String(post.readingMinutes)
-                        )}
-                      </span>
-                    </div>
-                    <h2 className="mt-4 text-xl font-semibold text-ghost-white group-hover:text-polar-blue transition-colors leading-snug">
-                      {c.title}
-                    </h2>
-                    <p className="mt-2 text-sm text-faded-silver leading-relaxed flex-1">
-                      {c.excerpt}
-                    </p>
-                    <div className="mt-5 flex items-center justify-between text-xs text-muted-text">
-                      <time dateTime={post.date}>
-                        {dateFormatter.format(new Date(post.date))}
-                      </time>
-                      <span className="inline-flex items-center gap-1 text-polar-blue font-medium">
-                        {dict.blog.readMore}
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                          <path d="M5 12h14M13 5l7 7-7 7" />
-                        </svg>
-                      </span>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
+            {posts.length === 0 ? (
+              <p className="text-center text-faded-silver">
+                {lang === "vi"
+                  ? "Chưa có bài viết nào."
+                  : "No posts yet."}
+              </p>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {posts.map((post) => {
+                  const c = post.content[lang as Locale];
+                  return (
+                    <Link
+                      key={post.slug}
+                      href={`/${lang}/blog/${post.slug}`}
+                      className="card-floating group flex flex-col overflow-hidden no-underline"
+                    >
+                      <div className="relative aspect-[16/9] overflow-hidden bg-code-canvas">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={post.thumbnailUrl}
+                          alt=""
+                          loading="lazy"
+                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
+                        <div
+                          aria-hidden
+                          className="absolute inset-0 bg-gradient-to-t from-deep-space/80 via-deep-space/10 to-transparent"
+                        />
+                      </div>
+                      <div className="flex flex-1 flex-col p-6">
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="pill !text-polar-blue">{c.category}</span>
+                          <span className="text-xs text-muted-text font-mono">
+                            {dict.blog.readingMinutes.replace(
+                              "{n}",
+                              String(post.readingMinutes)
+                            )}
+                          </span>
+                        </div>
+                        <h2 className="mt-4 text-xl font-semibold text-ghost-white group-hover:text-polar-blue transition-colors leading-snug">
+                          {c.title}
+                        </h2>
+                        <p className="mt-2 text-sm text-faded-silver leading-relaxed flex-1">
+                          {c.excerpt}
+                        </p>
+                        <div className="mt-5 flex items-center justify-between text-xs text-muted-text">
+                          <time dateTime={post.date}>
+                            {dateFormatter.format(new Date(post.date))}
+                          </time>
+                          <span className="inline-flex items-center gap-1 text-polar-blue font-medium">
+                            {dict.blog.readMore}
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                              <path d="M5 12h14M13 5l7 7-7 7" />
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </section>
       </main>

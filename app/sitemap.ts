@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "./[lang]/blog/posts";
+import { getAllPosts } from "./lib/posts";
 
 const BASE = "https://digi43.net";
 
@@ -54,16 +54,22 @@ function emit(
   ];
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticEntries = STATIC_PATHS.flatMap(({ path, changeFrequency, priority }) =>
     emit(path, now, changeFrequency, priority)
   );
 
-  const postEntries = getAllPosts().flatMap((post) =>
-    emit(`/blog/${post.slug}`, new Date(post.date), "monthly", 0.6)
-  );
+  let postEntries: MetadataRoute.Sitemap = [];
+  try {
+    const posts = await getAllPosts();
+    postEntries = posts.flatMap((post) =>
+      emit(`/blog/${post.slug}`, new Date(post.date), "monthly", 0.6)
+    );
+  } catch {
+    // DB not reachable at build — fall back to static entries only.
+  }
 
   return [...staticEntries, ...postEntries];
 }

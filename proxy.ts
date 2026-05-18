@@ -58,6 +58,6 @@ export function proxy(request: NextRequest) {
 export const config = {
   // Skip Next internals, static assets, and metadata files
   matcher: [
-    "/((?!_next/|api/|favicon\\.ico|icon\\.png|apple-icon\\.png|opengraph-image|robots\\.txt|sitemap\\.xml|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|css|js|woff2?)$).*)",
+    "/((?!_next/|api/|admin(?:$|/)|favicon\\.ico|icon\\.png|apple-icon\\.png|opengraph-image|robots\\.txt|sitemap\\.xml|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|css|js|woff2?)$).*)",
   ],
 };
