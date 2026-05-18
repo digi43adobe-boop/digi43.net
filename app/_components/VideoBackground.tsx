@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 type Props = {
   /** Direct URL of the looping background video (mp4). */
   src: string;
-  /** Poster image shown before the video starts or as the mobile fallback. */
+  /** Poster image shown before the video plays — also the mobile fallback. */
   poster: string;
   /** Opacity 0-1 of the dark scrim placed over the video for text contrast. */
   overlay?: number;
@@ -15,10 +15,17 @@ type Props = {
 /**
  * Decorative ambient video background.
  *
- * - Autoplays muted, looped, inline (mobile-safe).
- * - Honours `prefers-reduced-motion` by falling back to the poster image.
- * - Skips the video on small viewports where data cost outweighs aesthetic.
- * - Pauses while off-screen so it doesn't burn battery / bandwidth.
+ * Renders a single `<video>` element on both server and client.
+ * The `poster` attribute means the user sees the image instantly, and
+ * if the browser blocks autoplay (mobile data-saver, OS-level
+ * `prefers-reduced-motion`, slow network) the poster stays visible —
+ * graceful fallback without an SSR/hydration mismatch.
+ *
+ * - autoplay + muted + playsInline = mobile-safe.
+ * - preload="none" defers the network cost until the browser actually
+ *   wants to play.
+ * - IntersectionObserver pauses while off-screen to save battery / data.
+ * - `prefers-reduced-motion: reduce` -> pause and freeze on the poster.
  */
 export function VideoBackground({
   src,
@@ -27,34 +34,19 @@ export function VideoBackground({
   className = "",
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const desktopMq = window.matchMedia("(min-width: 768px)");
-    const motionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const sync = () => {
-      setIsDesktop(desktopMq.matches);
-      setReduceMotion(motionMq.matches);
-    };
-    sync();
-
-    desktopMq.addEventListener("change", sync);
-    motionMq.addEventListener("change", sync);
-    return () => {
-      desktopMq.removeEventListener("change", sync);
-      motionMq.removeEventListener("change", sync);
-    };
-  }, []);
-
-  // Pause the video when its container scrolls out of view.
-  useEffect(() => {
-    const el = containerRef.current;
     const video = videoRef.current;
-    if (!el || !video) return;
+    if (!video) return;
+
+    const reduceMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion) {
+      video.pause();
+      return;
+    }
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -68,39 +60,26 @@ export function VideoBackground({
       },
       { threshold: 0.05 }
     );
-    io.observe(el);
+    io.observe(video);
     return () => io.disconnect();
-  }, [isDesktop, reduceMotion]);
-
-  const showVideo = isDesktop && !reduceMotion;
+  }, []);
 
   return (
     <div
-      ref={containerRef}
       aria-hidden
       className={`absolute inset-0 overflow-hidden ${className}`}
     >
-      {showVideo ? (
-        <video
-          ref={videoRef}
-          src={src}
-          poster={poster}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      ) : (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={poster}
-          alt=""
-          loading="eager"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      )}
+      <video
+        ref={videoRef}
+        src={src}
+        poster={poster}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="none"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
       <div
         className="absolute inset-0 bg-deep-space"
         style={{ opacity: overlay }}
