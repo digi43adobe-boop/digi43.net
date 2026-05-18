@@ -5,6 +5,10 @@ import { getDictionary, hasLocale, locales, type Locale } from "../../dictionari
 import { Navbar } from "../../../_components/Navbar";
 import { Footer } from "../../../_components/Footer";
 import {
+  TECH_BG,
+  VideoBackground,
+} from "../../../_components/VideoBackground";
+import {
   getAllPosts,
   getAllSlugs,
   getPostBySlug,
@@ -80,10 +84,10 @@ export default async function BlogPostPage(
       <Navbar dict={dict.nav} lang={lang} />
       <main className="flex-1 bg-deep-space text-ghost-white">
         <section className="relative pt-32 pb-12 lg:pt-40 lg:pb-16 border-b border-subtle-gray overflow-hidden">
-          <div aria-hidden className="absolute inset-0 bg-deep-gradient opacity-60" />
+          <VideoBackground src={TECH_BG.src} poster={TECH_BG.poster} overlay={0.78} />
           <div
             aria-hidden
-            className="absolute -top-40 right-[-10%] h-[500px] w-[700px] bg-blue-violet-orb blur-3xl opacity-30"
+            className="absolute -top-40 right-[-10%] h-[500px] w-[700px] bg-blue-violet-orb blur-3xl opacity-20 mix-blend-screen"
           />
 
           <div className="container-page relative max-w-3xl">

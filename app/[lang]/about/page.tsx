@@ -4,6 +4,10 @@ import Link from "next/link";
 import { getDictionary, hasLocale } from "../dictionaries";
 import { Navbar } from "../../_components/Navbar";
 import { Footer } from "../../_components/Footer";
+import {
+  TECH_BG,
+  VideoBackground,
+} from "../../_components/VideoBackground";
 
 export async function generateMetadata(
   props: PageProps<"/[lang]/about">
@@ -36,11 +40,11 @@ export default async function AboutPage(props: PageProps<"/[lang]/about">) {
       <main className="flex-1 bg-deep-space text-ghost-white">
         {/* Hero */}
         <section className="relative isolate overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-24 border-b border-subtle-gray">
-          <div aria-hidden className="absolute inset-0 bg-deep-gradient opacity-70" />
-          <div aria-hidden className="absolute inset-0 bg-grid opacity-30" />
+          <VideoBackground src={TECH_BG.src} poster={TECH_BG.poster} overlay={0.75} />
+          <div aria-hidden className="absolute inset-0 bg-grid opacity-15" />
           <div
             aria-hidden
-            className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] bg-violet-glow blur-3xl opacity-60"
+            className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] bg-violet-glow blur-3xl opacity-35 mix-blend-screen"
           />
 
           <div className="container-page relative">

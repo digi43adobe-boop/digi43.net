@@ -1,3 +1,5 @@
+import { TECH_BG, VideoBackground } from "./VideoBackground";
+
 type HeroDict = {
   badge: string;
   title: string;
@@ -55,19 +57,20 @@ const LICENSE_ROWS = [
 export function Hero({ dict }: { dict: HeroDict }) {
   return (
     <section className="relative isolate overflow-hidden bg-deep-space text-ghost-white pt-32 pb-24 lg:pt-40 lg:pb-32">
-      <div aria-hidden className="absolute inset-0 bg-deep-gradient opacity-80" />
-      <div aria-hidden className="absolute inset-0 bg-grid opacity-40" />
+      {/* Ambient video — particle globe, evokes global software platforms */}
+      <VideoBackground src={TECH_BG.src} poster={TECH_BG.poster} overlay={0.7} />
+
+      {/* Subtle grid overlay for texture, on top of the video */}
+      <div aria-hidden className="absolute inset-0 bg-grid opacity-20" />
+
+      {/* Brand glow accents kept lighter so the video reads through */}
       <div
         aria-hidden
-        className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[1100px] bg-violet-glow blur-3xl opacity-70"
+        className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[1100px] bg-violet-glow blur-3xl opacity-40 mix-blend-screen"
       />
       <div
         aria-hidden
-        className="absolute bottom-0 right-[-200px] h-[460px] w-[460px] rounded-full bg-blue-violet-orb blur-3xl opacity-40 animate-float-slow"
-      />
-      <div
-        aria-hidden
-        className="absolute top-1/3 -left-32 h-[380px] w-[380px] rounded-full bg-vapor-trail blur-3xl opacity-30"
+        className="absolute bottom-0 right-[-200px] h-[460px] w-[460px] rounded-full bg-blue-violet-orb blur-3xl opacity-25 mix-blend-screen animate-float-slow"
       />
 
       <div className="container-page relative">

@@ -4,6 +4,10 @@ import { notFound } from "next/navigation";
 import { getDictionary, hasLocale, type Locale } from "../dictionaries";
 import { Navbar } from "../../_components/Navbar";
 import { Footer } from "../../_components/Footer";
+import {
+  TECH_BG,
+  VideoBackground,
+} from "../../_components/VideoBackground";
 import { getAllPosts } from "./posts";
 
 export async function generateMetadata(
@@ -44,11 +48,11 @@ export default async function BlogIndexPage(
       <Navbar dict={dict.nav} lang={lang} />
       <main className="flex-1 bg-deep-space text-ghost-white">
         <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-20 border-b border-subtle-gray overflow-hidden">
-          <div aria-hidden className="absolute inset-0 bg-deep-gradient opacity-70" />
-          <div aria-hidden className="absolute inset-0 bg-grid opacity-30" />
+          <VideoBackground src={TECH_BG.src} poster={TECH_BG.poster} overlay={0.75} />
+          <div aria-hidden className="absolute inset-0 bg-grid opacity-15" />
           <div
             aria-hidden
-            className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] bg-violet-glow blur-3xl opacity-60"
+            className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] bg-violet-glow blur-3xl opacity-35 mix-blend-screen"
           />
 
           <div className="container-page relative">
