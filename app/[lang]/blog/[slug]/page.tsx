@@ -4,10 +4,8 @@ import { notFound } from "next/navigation";
 import { getDictionary, hasLocale, locales, type Locale } from "../../dictionaries";
 import { Navbar } from "../../../_components/Navbar";
 import { Footer } from "../../../_components/Footer";
-import {
-  TECH_BG,
-  VideoBackground,
-} from "../../../_components/VideoBackground";
+import { VideoBackground } from "../../../_components/VideoBackground";
+import { TECH_BG } from "../../../_components/video-bg-config";
 import {
   getAllPosts,
   getAllSlugs,

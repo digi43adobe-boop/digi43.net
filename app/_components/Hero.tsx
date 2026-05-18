@@ -1,4 +1,5 @@
-import { TECH_BG, VideoBackground } from "./VideoBackground";
+import { VideoBackground } from "./VideoBackground";
+import { TECH_BG } from "./video-bg-config";
 
 type HeroDict = {
   badge: string;

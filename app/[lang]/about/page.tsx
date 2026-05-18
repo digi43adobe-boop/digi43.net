@@ -4,10 +4,8 @@ import Link from "next/link";
 import { getDictionary, hasLocale } from "../dictionaries";
 import { Navbar } from "../../_components/Navbar";
 import { Footer } from "../../_components/Footer";
-import {
-  TECH_BG,
-  VideoBackground,
-} from "../../_components/VideoBackground";
+import { VideoBackground } from "../../_components/VideoBackground";
+import { TECH_BG } from "../../_components/video-bg-config";
 
 export async function generateMetadata(
   props: PageProps<"/[lang]/about">

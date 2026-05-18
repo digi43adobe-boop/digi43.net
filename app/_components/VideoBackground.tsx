@@ -15,10 +15,15 @@ type Props = {
 /**
  * Decorative ambient video background.
  *
- * `src` and `poster` are wired through `data-*` attributes and promoted
- * onto the real DOM after mount. This sidesteps a quirk in the current
- * React 19 + Turbopack pipeline where `src`/`poster` set declaratively on
- * `<video>` inside a Client Component are dropped from the SSR HTML.
+ * Renders a single `<video>` element on both server and client. The
+ * `poster` attribute lets the browser show the image instantly; if
+ * autoplay is denied (mobile data-saver, prefers-reduced-motion, slow
+ * network) the poster stays in place — no SSR/hydration mismatch.
+ *
+ * - autoplay + muted + playsInline = mobile-safe.
+ * - preload="none" defers the network cost until needed.
+ * - IntersectionObserver pauses the video while off-screen.
+ * - prefers-reduced-motion: reduce -> pause, leaving the poster.
  */
 export function VideoBackground({
   src,
@@ -31,15 +36,6 @@ export function VideoBackground({
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-
-    // Promote data-* attributes to real ones so the browser starts loading.
-    const realSrc = video.getAttribute("data-src");
-    const realPoster = video.getAttribute("data-poster");
-    if (realPoster && !video.poster) video.poster = realPoster;
-    if (realSrc && !video.src) {
-      video.src = realSrc;
-      video.load();
-    }
 
     const reduceMotion =
       typeof window !== "undefined" &&
@@ -73,19 +69,14 @@ export function VideoBackground({
     >
       <video
         ref={videoRef}
+        src={src}
+        poster={poster}
         autoPlay
         muted
         loop
         playsInline
         preload="none"
-        data-src={src}
-        data-poster={poster}
         className="absolute inset-0 h-full w-full object-cover"
-        style={{
-          backgroundImage: `url("${poster}")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
       />
       <div
         className="absolute inset-0 bg-deep-space"
@@ -94,10 +85,3 @@ export function VideoBackground({
     </div>
   );
 }
-
-/** Default background asset — replace by swapping these two strings. */
-export const TECH_BG = {
-  src: "https://videos.pexels.com/video-files/3129957/3129957-hd_1280_720_25fps.mp4",
-  poster:
-    "https://images.pexels.com/videos/3129957/free-video-3129957.jpg?auto=compress&cs=tinysrgb&w=1600",
-} as const;
