@@ -23,6 +23,8 @@ function slugify(input: string): string {
     .slice(0, 80);
 }
 
+const IMAGE_RE = /^!\[([^\]]*)\]\((\S+)\)\s*$/;
+
 function parseBlocks(raw: string): Block[] {
   const lines = raw.split(/\r?\n/);
   const blocks: Block[] = [];
@@ -41,7 +43,13 @@ function parseBlocks(raw: string): Block[] {
       flushList();
       continue;
     }
-    if (line.startsWith("## ")) {
+    const imageMatch = line.match(IMAGE_RE);
+    if (imageMatch) {
+      flushList();
+      const alt = imageMatch[1].trim();
+      const src = imageMatch[2].trim();
+      blocks.push(alt ? { type: "image", src, alt } : { type: "image", src });
+    } else if (line.startsWith("## ")) {
       flushList();
       blocks.push({ type: "h2", text: line.slice(3).trim() });
     } else if (line.startsWith("### ")) {

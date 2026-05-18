@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import type { Block, Post } from "../../lib/types";
 import { savePostAction } from "../actions";
 
@@ -23,6 +23,8 @@ function blocksToText(blocks: Block[]): string {
           return b.items.map((i) => `- ${i}`).join("\n");
         case "callout":
           return `> ${b.text}`;
+        case "image":
+          return `![${b.alt ?? ""}](${b.src})`;
       }
     })
     .join("\n\n");
@@ -32,30 +34,76 @@ export function PostForm({ initial, mode }: Props) {
   const [thumbnailUrl, setThumbnailUrl] = useState(initial?.thumbnailUrl ?? "");
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [bodyUploadingLang, setBodyUploadingLang] = useState<"vi" | "en" | null>(null);
   const [tab, setTab] = useState<"vi" | "en">("vi");
   const [isPending, startTransition] = useTransition();
   const [formError, setFormError] = useState<string | null>(null);
+
+  const bodyViRef = useRef<HTMLTextAreaElement | null>(null);
+  const bodyEnRef = useRef<HTMLTextAreaElement | null>(null);
 
   const dateValue = initial?.date
     ? new Date(initial.date).toISOString().slice(0, 10)
     : new Date().toISOString().slice(0, 10);
 
-  async function onUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  async function uploadFile(file: File): Promise<string> {
+    const fd = new FormData();
+    fd.append("file", file);
+    const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.error ?? "Upload failed");
+    return json.url as string;
+  }
+
+  async function onUploadThumb(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
     setUploading(true);
     setUploadError(null);
     try {
-      const fd = new FormData();
-      fd.append("file", file);
-      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? "Upload failed");
-      setThumbnailUrl(json.url);
+      const url = await uploadFile(file);
+      setThumbnailUrl(url);
     } catch (err) {
       setUploadError(err instanceof Error ? err.message : String(err));
     } finally {
       setUploading(false);
+      e.target.value = "";
+    }
+  }
+
+  async function onInsertBodyImage(
+    lang: "vi" | "en",
+    e: React.ChangeEvent<HTMLInputElement>
+  ) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setBodyUploadingLang(lang);
+    setUploadError(null);
+    const textarea = lang === "vi" ? bodyViRef.current : bodyEnRef.current;
+    try {
+      const url = await uploadFile(file);
+      if (!textarea) return;
+      const markdown = `![](${url})`;
+      const start = textarea.selectionStart ?? textarea.value.length;
+      const end = textarea.selectionEnd ?? textarea.value.length;
+      const before = textarea.value.slice(0, start);
+      const after = textarea.value.slice(end);
+      // Insert with surrounding blank lines so it parses as its own block.
+      const needsLeadingBreak = before && !before.endsWith("\n\n");
+      const lead = before.endsWith("\n") ? "\n" : needsLeadingBreak ? "\n\n" : "";
+      const tail = after.startsWith("\n") ? "\n" : "\n\n";
+      const insertion = `${lead}${markdown}${tail}`;
+      textarea.value = before + insertion + after;
+      const caretAfter = (before + insertion).length;
+      textarea.focus();
+      textarea.setSelectionRange(caretAfter, caretAfter);
+      // Notify React-controlled rerender (uncontrolled textarea uses defaultValue,
+      // so we just trigger a synthetic input event for any listeners).
+      textarea.dispatchEvent(new Event("input", { bubbles: true }));
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setBodyUploadingLang(null);
       e.target.value = "";
     }
   }
@@ -113,14 +161,12 @@ export function PostForm({ initial, mode }: Props) {
                 type="file"
                 accept="image/jpeg,image/png,image/webp,image/gif"
                 className="hidden"
-                onChange={onUpload}
+                onChange={onUploadThumb}
                 disabled={uploading}
               />
               {uploading ? "Đang upload..." : "Chọn ảnh (JPG/PNG/WebP, ≤5MB)"}
             </label>
-            <p className="text-xs text-muted-text">
-              Hoặc dán URL ảnh:
-            </p>
+            <p className="text-xs text-muted-text">Hoặc dán URL ảnh:</p>
             <input
               type="url"
               value={thumbnailUrl}
@@ -208,21 +254,20 @@ export function PostForm({ initial, mode }: Props) {
               className="input-field"
             />
           </Field>
-          <Field
+          <BodyEditor
             label="Nội dung (VI)"
-            hint='Mỗi dòng = 1 đoạn. "## " = tiêu đề lớn · "### " = tiêu đề nhỏ · "- " = danh sách · "> " = highlight'
-          >
-            <textarea
-              name="body_vi"
-              defaultValue={
-                initial?.content.vi.blocks
-                  ? blocksToText(initial.content.vi.blocks)
-                  : ""
-              }
-              rows={20}
-              className="input-field font-mono !text-sm leading-relaxed"
-            />
-          </Field>
+            hint='Mỗi dòng = 1 đoạn. "## " = tiêu đề lớn · "### " = tiêu đề nhỏ · "- " = danh sách · "> " = highlight · "![](url)" = ảnh'
+            name="body_vi"
+            defaultValue={
+              initial?.content.vi.blocks
+                ? blocksToText(initial.content.vi.blocks)
+                : ""
+            }
+            textareaRef={bodyViRef}
+            uploading={bodyUploadingLang === "vi"}
+            onUpload={(e) => onInsertBodyImage("vi", e)}
+            insertLabel="Chèn ảnh"
+          />
         </div>
 
         <div className={tab === "en" ? "mt-6 space-y-4" : "hidden"}>
@@ -249,21 +294,20 @@ export function PostForm({ initial, mode }: Props) {
               className="input-field"
             />
           </Field>
-          <Field
+          <BodyEditor
             label="Body (EN)"
-            hint='One line per paragraph. "## " = h2 · "### " = h3 · "- " = list · "> " = callout'
-          >
-            <textarea
-              name="body_en"
-              defaultValue={
-                initial?.content.en.blocks
-                  ? blocksToText(initial.content.en.blocks)
-                  : ""
-              }
-              rows={20}
-              className="input-field font-mono !text-sm leading-relaxed"
-            />
-          </Field>
+            hint='One line per paragraph. "## " = h2 · "### " = h3 · "- " = list · "> " = callout · "![](url)" = image'
+            name="body_en"
+            defaultValue={
+              initial?.content.en.blocks
+                ? blocksToText(initial.content.en.blocks)
+                : ""
+            }
+            textareaRef={bodyEnRef}
+            uploading={bodyUploadingLang === "en"}
+            onUpload={(e) => onInsertBodyImage("en", e)}
+            insertLabel="Insert image"
+          />
         </div>
       </section>
 
@@ -279,12 +323,10 @@ export function PostForm({ initial, mode }: Props) {
           Hiển thị công khai
         </label>
         <div className="flex items-center gap-3">
-          {formError && (
-            <p className="text-sm text-red-400">{formError}</p>
-          )}
+          {formError && <p className="text-sm text-red-400">{formError}</p>}
           <button
             type="submit"
-            disabled={isPending || uploading}
+            disabled={isPending || uploading || bodyUploadingLang !== null}
             className="btn-primary disabled:opacity-50"
           >
             {isPending
@@ -296,6 +338,71 @@ export function PostForm({ initial, mode }: Props) {
         </div>
       </section>
     </form>
+  );
+}
+
+function BodyEditor({
+  label,
+  hint,
+  name,
+  defaultValue,
+  textareaRef,
+  uploading,
+  onUpload,
+  insertLabel,
+}: {
+  label: string;
+  hint: string;
+  name: string;
+  defaultValue: string;
+  textareaRef: React.RefObject<HTMLTextAreaElement | null>;
+  uploading: boolean;
+  onUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  insertLabel: string;
+}) {
+  return (
+    <label className="block">
+      <div className="flex items-center justify-between gap-3">
+        <span className="text-xs font-semibold uppercase tracking-wider text-faded-silver">
+          {label}
+        </span>
+        <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-md border border-subtle-gray bg-code-canvas px-2.5 py-1.5 text-xs font-medium text-faded-silver hover:border-polar-blue hover:text-ghost-white transition">
+          <input
+            type="file"
+            accept="image/jpeg,image/png,image/webp,image/gif"
+            className="hidden"
+            onChange={onUpload}
+            disabled={uploading}
+          />
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="9" cy="9" r="2" />
+            <path d="m21 15-5-5L5 21" />
+          </svg>
+          {uploading ? "Đang tải..." : insertLabel}
+        </label>
+      </div>
+      <div className="mt-2">
+        <textarea
+          ref={textareaRef}
+          name={name}
+          defaultValue={defaultValue}
+          rows={20}
+          className="input-field font-mono !text-sm leading-relaxed"
+        />
+      </div>
+      <p className="mt-1.5 text-xs text-muted-text">{hint}</p>
+    </label>
   );
 }
 

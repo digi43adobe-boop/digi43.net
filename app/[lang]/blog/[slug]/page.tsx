@@ -273,5 +273,24 @@ function RenderBlock({ block }: { block: Block }) {
           </div>
         </aside>
       );
+    case "image":
+      return (
+        <figure className="!my-10">
+          <div className="overflow-hidden rounded-2xl border border-subtle-gray bg-code-canvas">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={block.src}
+              alt={block.alt ?? ""}
+              loading="lazy"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          {block.alt && (
+            <figcaption className="mt-3 text-center text-sm text-muted-text">
+              {block.alt}
+            </figcaption>
+          )}
+        </figure>
+      );
   }
 }
