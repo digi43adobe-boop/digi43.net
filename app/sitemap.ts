@@ -1,25 +1,30 @@
 import type { MetadataRoute } from "next";
+import { getAllPosts } from "./[lang]/blog/posts";
 
 const BASE = "https://digi43.net";
 
-// Paths kept in one place so adding a new page = one line edit.
 type PathDef = {
   path: string;
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
   priority: number;
+  lastModified?: Date;
 };
 
-const PATHS: PathDef[] = [
+const STATIC_PATHS: PathDef[] = [
   { path: "", changeFrequency: "weekly", priority: 1.0 },
   { path: "/about", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
   { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-
-  return PATHS.flatMap(({ path, changeFrequency, priority }) => [
+function emit(
+  path: string,
+  lastModified: Date,
+  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"],
+  priority: number
+): MetadataRoute.Sitemap {
+  return [
     {
       url: `${BASE}/vi${path}`,
       lastModified,
@@ -46,5 +51,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-  ]);
+  ];
+}
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+
+  const staticEntries = STATIC_PATHS.flatMap(({ path, changeFrequency, priority }) =>
+    emit(path, now, changeFrequency, priority)
+  );
+
+  const postEntries = getAllPosts().flatMap((post) =>
+    emit(`/blog/${post.slug}`, new Date(post.date), "monthly", 0.6)
+  );
+
+  return [...staticEntries, ...postEntries];
 }

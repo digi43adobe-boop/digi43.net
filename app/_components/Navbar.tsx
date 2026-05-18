@@ -14,6 +14,7 @@ type NavDict = {
   whyUs: string;
   contact: string;
   about: string;
+  insights: string;
   phone: string;
   cta: string;
 };
@@ -30,11 +31,12 @@ export function Navbar({ dict, lang }: { dict: NavDict; lang: Locale }) {
   }, []);
 
   const items = [
-    { label: dict.solutions, href: "#products" },
-    { label: dict.platforms, href: "#partners" },
-    { label: dict.services, href: "#services" },
-    { label: dict.whyUs, href: "#why" },
-    { label: dict.contact, href: "#contact" },
+    { label: dict.solutions, href: `/${lang}#products` },
+    { label: dict.platforms, href: `/${lang}#partners` },
+    { label: dict.services, href: `/${lang}#services` },
+    { label: dict.whyUs, href: `/${lang}#why` },
+    { label: dict.insights, href: `/${lang}/blog` },
+    { label: dict.contact, href: `/${lang}#contact` },
   ];
 
   return (
@@ -66,7 +68,7 @@ export function Navbar({ dict, lang }: { dict: NavDict; lang: Locale }) {
           >
             {dict.phone}
           </a>
-          <a href="#contact" className="btn-primary">
+          <a href={`/${lang}#contact`} className="btn-primary">
             {dict.cta}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <path d="M5 12h14M13 5l7 7-7 7" />
@@ -105,7 +107,7 @@ export function Navbar({ dict, lang }: { dict: NavDict; lang: Locale }) {
               </a>
             ))}
             <a
-              href="#contact"
+              href={`/${lang}#contact`}
               onClick={() => setOpen(false)}
               className="btn-primary mt-2 justify-center"
             >

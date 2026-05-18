@@ -13,7 +13,8 @@
     "contact": "Contact",
     "about": "About",
     "phone": "+84 905 711 739",
-    "cta": "Request consultation"
+    "cta": "Request consultation",
+    "insights": "Insights"
   },
   "hero": {
     "badge": "Enterprise Software Solutions",
@@ -23,9 +24,18 @@
     "ctaPrimary": "Request consultation",
     "ctaSecondary": "Explore solutions",
     "stats": {
-      "licensing": { "label": "Licensing", "value": "Genuine sourcing" },
-      "sla": { "label": "Response SLA", "value": "15 minutes" },
-      "support": { "label": "Local support", "value": "24/7" }
+      "licensing": {
+        "label": "Licensing",
+        "value": "Genuine sourcing"
+      },
+      "sla": {
+        "label": "Response SLA",
+        "value": "15 minutes"
+      },
+      "support": {
+        "label": "Local support",
+        "value": "24/7"
+      }
     },
     "dashboard": {
       "title": "License Operations",
@@ -116,9 +126,18 @@
       "title": "SLA commitments for enterprise customers",
       "subtitle": "15-minute response · P1 resolution within 4 hours · Quarterly license health-check reporting.",
       "metrics": [
-        { "v": "15m", "l": "Response" },
-        { "v": "4h", "l": "P1 resolution" },
-        { "v": "99.9%", "l": "Portal uptime" }
+        {
+          "v": "15m",
+          "l": "Response"
+        },
+        {
+          "v": "4h",
+          "l": "P1 resolution"
+        },
+        {
+          "v": "99.9%",
+          "l": "Portal uptime"
+        }
       ]
     }
   },
@@ -169,10 +188,22 @@
       "Public Sector"
     ],
     "commitments": [
-      { "v": "Genuine licensing", "l": "Licenses sourced through manufacturer-approved channels with full VAT invoicing" },
-      { "v": "15 minutes", "l": "Response SLA across hotline, email, and chat during business hours" },
-      { "v": "24/7", "l": "Vietnamese-speaking engineering team ready to handle incidents" },
-      { "v": "Cost optimization", "l": "Advisory on EA / CSP / Volume Licensing programs best matched to your needs" }
+      {
+        "v": "Genuine licensing",
+        "l": "Licenses sourced through manufacturer-approved channels with full VAT invoicing"
+      },
+      {
+        "v": "15 minutes",
+        "l": "Response SLA across hotline, email, and chat during business hours"
+      },
+      {
+        "v": "24/7",
+        "l": "Vietnamese-speaking engineering team ready to handle incidents"
+      },
+      {
+        "v": "Cost optimization",
+        "l": "Advisory on EA / CSP / Volume Licensing programs best matched to your needs"
+      }
     ]
   },
   "faq": {
@@ -227,7 +258,12 @@
       "company": "Company name",
       "companyPlaceholder": "Acme Corporation",
       "companySize": "Company size",
-      "companySizes": ["1 – 50", "51 – 200", "201 – 1,000", "1,000+"],
+      "companySizes": [
+        "1 – 50",
+        "51 – 200",
+        "201 – 1,000",
+        "1,000+"
+      ],
       "solution": "Solution of interest",
       "solutions": [
         "Adobe Creative Cloud / Acrobat",
@@ -240,7 +276,12 @@
         "Other — general consultation"
       ],
       "timeline": "Project timeline",
-      "timelines": ["Within 1 month", "1 – 3 months", "3 – 6 months", "Exploring"],
+      "timelines": [
+        "Within 1 month",
+        "1 – 3 months",
+        "3 – 6 months",
+        "Exploring"
+      ],
       "message": "Notes (optional)",
       "messagePlaceholder": "Number of licenses, specific requirements, existing systems...",
       "submit": "Send enquiry",
@@ -286,10 +327,26 @@
       "company": {
         "title": "Company",
         "items": [
-          { "label": "About Digi43", "href": "/about" },
-          { "label": "News", "href": "#" },
-          { "label": "Careers", "href": "#" },
-          { "label": "Contact", "href": "#contact" }
+          {
+            "label": "About Digi43",
+            "href": "/about"
+          },
+          {
+            "label": "Insights",
+            "href": "/blog"
+          },
+          {
+            "label": "News",
+            "href": "#"
+          },
+          {
+            "label": "Careers",
+            "href": "#"
+          },
+          {
+            "label": "Contact",
+            "href": "#contact"
+          }
         ]
       }
     },
@@ -354,5 +411,20 @@
       "primary": "Request consultation",
       "secondary": "Contact us directly"
     }
+  },
+  "blog": {
+    "metaTitle": "Insights & News",
+    "metaDescription": "Articles and technical briefs on software licensing, Adobe deployments, Microsoft 365, and cloud cost optimization for enterprises in Vietnam.",
+    "kicker": "Insights",
+    "title": "Articles & technical briefs",
+    "subtitle": "Practical guidance on licensing, deployment, and governance — from the Digi43 team.",
+    "readingMinutes": "{n} min read",
+    "readMore": "Read article",
+    "backToBlog": "← Back to Insights",
+    "publishedOn": "Published",
+    "ctaTitle": "Need advice on your software project?",
+    "ctaButton": "Request consultation",
+    "relatedTitle": "Related articles",
+    "navLink": "Insights"
   }
 }

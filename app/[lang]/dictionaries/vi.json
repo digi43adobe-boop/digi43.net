@@ -13,7 +13,8 @@
     "contact": "Liên hệ",
     "about": "Về chúng tôi",
     "phone": "0905 711 739",
-    "cta": "Đăng ký tư vấn"
+    "cta": "Đăng ký tư vấn",
+    "insights": "Insights"
   },
   "hero": {
     "badge": "Enterprise Software Solutions",
@@ -23,9 +24,18 @@
     "ctaPrimary": "Đăng ký tư vấn",
     "ctaSecondary": "Khám phá giải pháp",
     "stats": {
-      "licensing": { "label": "Bản quyền", "value": "Chính hãng" },
-      "sla": { "label": "SLA phản hồi", "value": "15 phút" },
-      "support": { "label": "Hỗ trợ tiếng Việt", "value": "24/7" }
+      "licensing": {
+        "label": "Bản quyền",
+        "value": "Chính hãng"
+      },
+      "sla": {
+        "label": "SLA phản hồi",
+        "value": "15 phút"
+      },
+      "support": {
+        "label": "Hỗ trợ tiếng Việt",
+        "value": "24/7"
+      }
     },
     "dashboard": {
       "title": "License Operations",
@@ -116,9 +126,18 @@
       "title": "Cam kết SLA cho khách hàng doanh nghiệp",
       "subtitle": "Phản hồi trong 15 phút · Khắc phục sự cố P1 trong 4 giờ · Báo cáo health-check license hàng quý.",
       "metrics": [
-        { "v": "15p", "l": "Phản hồi" },
-        { "v": "4h", "l": "Khắc phục P1" },
-        { "v": "99.9%", "l": "Uptime portal" }
+        {
+          "v": "15p",
+          "l": "Phản hồi"
+        },
+        {
+          "v": "4h",
+          "l": "Khắc phục P1"
+        },
+        {
+          "v": "99.9%",
+          "l": "Uptime portal"
+        }
       ]
     }
   },
@@ -169,10 +188,22 @@
       "Cơ quan nhà nước"
     ],
     "commitments": [
-      { "v": "Chính hãng", "l": "License đi qua kênh phân phối được hãng phê duyệt, hoá đơn VAT đầy đủ" },
-      { "v": "15 phút", "l": "SLA phản hồi yêu cầu hỗ trợ qua hotline, email hoặc Zalo" },
-      { "v": "24/7", "l": "Đội ngũ kỹ thuật tiếng Việt sẵn sàng xử lý sự cố" },
-      { "v": "Tối ưu chi phí", "l": "Tư vấn lựa chọn gói EA / CSP / Volume Licensing phù hợp" }
+      {
+        "v": "Chính hãng",
+        "l": "License đi qua kênh phân phối được hãng phê duyệt, hoá đơn VAT đầy đủ"
+      },
+      {
+        "v": "15 phút",
+        "l": "SLA phản hồi yêu cầu hỗ trợ qua hotline, email hoặc Zalo"
+      },
+      {
+        "v": "24/7",
+        "l": "Đội ngũ kỹ thuật tiếng Việt sẵn sàng xử lý sự cố"
+      },
+      {
+        "v": "Tối ưu chi phí",
+        "l": "Tư vấn lựa chọn gói EA / CSP / Volume Licensing phù hợp"
+      }
     ]
   },
   "faq": {
@@ -227,7 +258,12 @@
       "company": "Tên doanh nghiệp",
       "companyPlaceholder": "Công ty TNHH ...",
       "companySize": "Quy mô nhân sự",
-      "companySizes": ["1 – 50", "51 – 200", "201 – 1000", "Trên 1000"],
+      "companySizes": [
+        "1 – 50",
+        "51 – 200",
+        "201 – 1000",
+        "Trên 1000"
+      ],
       "solution": "Giải pháp quan tâm",
       "solutions": [
         "Adobe Creative Cloud / Acrobat",
@@ -240,7 +276,12 @@
         "Khác — tư vấn tổng thể"
       ],
       "timeline": "Thời điểm triển khai",
-      "timelines": ["Trong 1 tháng", "1 – 3 tháng", "3 – 6 tháng", "Đang khảo sát"],
+      "timelines": [
+        "Trong 1 tháng",
+        "1 – 3 tháng",
+        "3 – 6 tháng",
+        "Đang khảo sát"
+      ],
       "message": "Mô tả nhu cầu (tuỳ chọn)",
       "messagePlaceholder": "Số lượng license, yêu cầu đặc thù, hệ thống hiện tại...",
       "submit": "Gửi yêu cầu báo giá",
@@ -286,10 +327,26 @@
       "company": {
         "title": "Công ty",
         "items": [
-          { "label": "Về Digi43", "href": "/about" },
-          { "label": "Tin tức", "href": "#" },
-          { "label": "Tuyển dụng", "href": "#" },
-          { "label": "Liên hệ", "href": "#contact" }
+          {
+            "label": "Về Digi43",
+            "href": "/about"
+          },
+          {
+            "label": "Insights",
+            "href": "/blog"
+          },
+          {
+            "label": "Tin tức",
+            "href": "#"
+          },
+          {
+            "label": "Tuyển dụng",
+            "href": "#"
+          },
+          {
+            "label": "Liên hệ",
+            "href": "#contact"
+          }
         ]
       }
     },
@@ -354,5 +411,20 @@
       "primary": "Đăng ký tư vấn",
       "secondary": "Liên hệ trực tiếp"
     }
+  },
+  "blog": {
+    "metaTitle": "Insights & Tin tức",
+    "metaDescription": "Bài viết và tài liệu kỹ thuật về license phần mềm, triển khai Adobe, Microsoft 365 và tối ưu chi phí cloud cho doanh nghiệp Việt Nam.",
+    "kicker": "Insights",
+    "title": "Bài viết & tài liệu kỹ thuật",
+    "subtitle": "Hướng dẫn thực dụng về license, deployment và governance — viết bởi đội ngũ Digi43.",
+    "readingMinutes": "{n} phút đọc",
+    "readMore": "Đọc bài",
+    "backToBlog": "← Quay lại Insights",
+    "publishedOn": "Đăng ngày",
+    "ctaTitle": "Cần tư vấn cho dự án phần mềm của bạn?",
+    "ctaButton": "Đăng ký tư vấn",
+    "relatedTitle": "Bài viết liên quan",
+    "navLink": "Insights"
   }
 }
