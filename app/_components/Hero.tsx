@@ -1,11 +1,62 @@
-export function Hero() {
+type HeroDict = {
+  badge: string;
+  title: string;
+  titleAccent: string;
+  subtitle: string;
+  ctaPrimary: string;
+  ctaSecondary: string;
+  stats: {
+    licensing: { label: string; value: string };
+    sla: { label: string; value: string };
+    support: { label: string; value: string };
+  };
+  dashboard: {
+    title: string;
+    subtitle: string;
+    statusActive: string;
+    tabs: { inventory: string; renewals: string; users: string };
+    metrics: {
+      totalSeats: string;
+      utilization: string;
+      upcomingRenewal: string;
+    };
+    renewalLabel: string;
+    footer: string;
+  };
+};
+
+const LICENSE_ROWS = [
+  {
+    name: "Microsoft 365 Business Premium",
+    used: 248,
+    total: 250,
+    logo: "https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg",
+  },
+  {
+    name: "Adobe Creative Cloud for Teams",
+    used: 32,
+    total: 35,
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/500px-Adobe_Creative_Cloud_rainbow_icon.svg.png",
+  },
+  {
+    name: "Autodesk AEC Collection",
+    used: 16,
+    total: 18,
+    logo: "https://cdn.simpleicons.org/autodesk/ffffff",
+  },
+  {
+    name: "Windows 11 Enterprise",
+    used: 247,
+    total: 250,
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/500px-Windows_logo_-_2012.svg.png",
+  },
+];
+
+export function Hero({ dict }: { dict: HeroDict }) {
   return (
     <section className="relative isolate overflow-hidden bg-deep-space text-ghost-white pt-32 pb-24 lg:pt-40 lg:pb-32">
-      {/* Deep blue gradient base */}
       <div aria-hidden className="absolute inset-0 bg-deep-gradient opacity-80" />
-      {/* Grid overlay */}
       <div aria-hidden className="absolute inset-0 bg-grid opacity-40" />
-      {/* Glowing orbs */}
       <div
         aria-hidden
         className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[1100px] bg-violet-glow blur-3xl opacity-70"
@@ -27,140 +78,181 @@ export function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping-soft rounded-full bg-neon-green opacity-70" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-neon-green" />
               </span>
-              <span className="text-polar-blue">Microsoft Solutions Partner · Authorized Reseller</span>
+              <span className="text-polar-blue">{dict.badge}</span>
             </span>
 
             <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-bold tracking-tight text-balance leading-[1.05]">
-              Giải pháp{" "}
+              {dict.title}{" "}
               <span className="bg-gradient-to-r from-accent-pink via-cosmic-violet to-polar-blue bg-clip-text text-transparent">
-                phần mềm bản quyền
+                {dict.titleAccent}
               </span>
-              <br className="hidden sm:block" />
-              cho doanh nghiệp hiện đại
             </h1>
 
             <p className="max-w-2xl text-lg text-faded-silver text-balance">
-              Digi43 là đối tác cung cấp phần mềm bản quyền chính hãng tại Việt
-              Nam — từ Microsoft 365, Adobe Creative Cloud, Autodesk đến các
-              giải pháp bảo mật và hạ tầng cloud. Tư vấn license, triển khai và
-              hỗ trợ kỹ thuật bằng tiếng Việt.
+              {dict.subtitle}
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <a href="#contact" className="btn-primary">
-                Nhận tư vấn miễn phí
+                {dict.ctaPrimary}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <path d="M5 12h14M13 5l7 7-7 7" />
                 </svg>
               </a>
               <a href="#products" className="btn-outline">
-                Xem danh mục giải pháp
+                {dict.ctaSecondary}
               </a>
             </div>
 
             <dl className="grid grid-cols-3 gap-6 pt-8 max-w-2xl border-t border-subtle-gray">
               <div className="pt-6">
-                <dt className="text-xs uppercase tracking-[0.18em] text-muted-text">Bản quyền</dt>
-                <dd className="mt-2 text-xl font-semibold text-ghost-white">100% chính hãng</dd>
+                <dt className="text-xs uppercase tracking-[0.18em] text-muted-text">
+                  {dict.stats.licensing.label}
+                </dt>
+                <dd className="mt-2 text-xl font-semibold text-ghost-white">
+                  {dict.stats.licensing.value}
+                </dd>
               </div>
               <div className="pt-6">
-                <dt className="text-xs uppercase tracking-[0.18em] text-muted-text">SLA phản hồi</dt>
-                <dd className="mt-2 text-xl font-semibold text-ghost-white">15 phút</dd>
+                <dt className="text-xs uppercase tracking-[0.18em] text-muted-text">
+                  {dict.stats.sla.label}
+                </dt>
+                <dd className="mt-2 text-xl font-semibold text-ghost-white">
+                  {dict.stats.sla.value}
+                </dd>
               </div>
               <div className="pt-6">
-                <dt className="text-xs uppercase tracking-[0.18em] text-muted-text">Hỗ trợ tiếng Việt</dt>
-                <dd className="mt-2 text-xl font-semibold text-ghost-white">24/7</dd>
+                <dt className="text-xs uppercase tracking-[0.18em] text-muted-text">
+                  {dict.stats.support.label}
+                </dt>
+                <dd className="mt-2 text-xl font-semibold text-ghost-white">
+                  {dict.stats.support.value}
+                </dd>
               </div>
             </dl>
           </div>
 
           <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Glow behind card */}
-              <div aria-hidden className="absolute -inset-6 bg-blue-violet-orb opacity-25 blur-3xl rounded-full" />
-
-              <div className="relative card-code overflow-hidden">
-                {/* Top bar like an IDE */}
-                <div className="flex items-center gap-2 px-5 py-3 border-b border-subtle-gray">
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-                </div>
-
-                <div className="p-5">
-                  <div className="flex items-center justify-between mb-5">
-                    <div>
-                      <p className="text-[11px] uppercase tracking-[0.18em] text-muted-text">License Portfolio</p>
-                      <p className="text-base font-semibold mt-1">Doanh nghiệp 250 nhân sự</p>
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-spring-green/15 text-neon-green text-[11px] font-semibold px-2.5 py-1 border border-spring-green/30">
-                      <span className="h-1.5 w-1.5 rounded-full bg-neon-green" />
-                      Active
-                    </span>
-                  </div>
-
-                  <div className="space-y-2.5">
-                    {[
-                      {
-                        name: "Microsoft 365 Business Premium",
-                        seats: "250 users",
-                        logo: "https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg",
-                      },
-                      {
-                        name: "Adobe Creative Cloud for Teams",
-                        seats: "35 users",
-                        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg/500px-Adobe_Creative_Cloud_rainbow_icon.svg.png",
-                      },
-                      {
-                        name: "Autodesk AEC Collection",
-                        seats: "18 users",
-                        logo: "https://cdn.simpleicons.org/autodesk/ffffff",
-                      },
-                      {
-                        name: "Windows 11 Enterprise",
-                        seats: "250 devices",
-                        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/500px-Windows_logo_-_2012.svg.png",
-                      },
-                      {
-                        name: "Kaspersky Endpoint Security",
-                        seats: "280 endpoints",
-                        logo: "https://cdn.simpleicons.org/kaspersky/5fed83",
-                      },
-                    ].map((row) => (
-                      <div
-                        key={row.name}
-                        className="flex items-center gap-3 rounded-xl border border-subtle-gray bg-white/[0.03] hover:bg-white/[0.06] transition px-3 py-2.5"
-                      >
-                        <span className="h-8 w-8 shrink-0 rounded-md bg-white/[0.08] border border-subtle-gray grid place-items-center p-1.5">
-                          <img src={row.logo} alt="" loading="lazy" className="h-full w-full object-contain" />
-                        </span>
-                        <div className="min-w-0 flex-1">
-                          <p className="truncate text-sm font-medium text-ghost-white">{row.name}</p>
-                          <p className="text-xs text-muted-text">{row.seats}</p>
-                        </div>
-                        <svg className="text-neon-green shrink-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                          <path d="M5 12l5 5L20 7" />
-                        </svg>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-5 flex items-center justify-between rounded-xl border border-interface-blue/40 bg-interface-blue/10 p-3.5">
-                    <div>
-                      <p className="text-[11px] text-polar-blue uppercase tracking-wider">Tiết kiệm hàng năm</p>
-                      <p className="text-lg font-bold text-ghost-white mt-0.5">~ 320 triệu VND</p>
-                    </div>
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-polar-blue" aria-hidden>
-                      <path d="M3 17l6-6 4 4 8-8" />
-                      <path d="M14 7h7v7" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <LicenseDashboard dict={dict.dashboard} />
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function LicenseDashboard({ dict }: { dict: HeroDict["dashboard"] }) {
+  const totalUsed = LICENSE_ROWS.reduce((s, r) => s + r.used, 0);
+  const totalSeats = LICENSE_ROWS.reduce((s, r) => s + r.total, 0);
+  const utilization = Math.round((totalUsed / totalSeats) * 100);
+
+  return (
+    <div className="relative mx-auto max-w-md lg:max-w-none">
+      <div aria-hidden className="absolute -inset-6 bg-blue-violet-orb opacity-25 blur-3xl rounded-full" />
+
+      <div className="relative rounded-2xl border border-subtle-gray bg-deep-space/90 backdrop-blur overflow-hidden shadow-[0_24px_80px_-20px_rgba(0,0,0,0.6)]">
+        {/* Dashboard chrome */}
+        <div className="flex items-center justify-between gap-3 px-5 py-3.5 border-b border-subtle-gray bg-white/[0.02]">
+          <div className="min-w-0">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-muted-text">
+              {dict.title}
+            </p>
+            <p className="text-sm font-medium text-ghost-white truncate">
+              {dict.subtitle}
+            </p>
+          </div>
+          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-spring-green/15 text-neon-green text-[11px] font-semibold px-2.5 py-1 border border-spring-green/30">
+            <span className="h-1.5 w-1.5 rounded-full bg-neon-green animate-pulse" />
+            {dict.statusActive}
+          </span>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex items-center gap-1 px-3 pt-3 border-b border-subtle-gray">
+          {[
+            { id: "inv", label: dict.tabs.inventory, active: true },
+            { id: "ren", label: dict.tabs.renewals, active: false },
+            { id: "usr", label: dict.tabs.users, active: false },
+          ].map((t) => (
+            <span
+              key={t.id}
+              className={`px-3 py-2 text-xs font-medium rounded-t-md border-b-2 -mb-px ${
+                t.active
+                  ? "text-ghost-white border-polar-blue bg-white/[0.04]"
+                  : "text-muted-text border-transparent"
+              }`}
+            >
+              {t.label}
+            </span>
+          ))}
+        </div>
+
+        {/* KPI row */}
+        <div className="grid grid-cols-3 gap-px bg-subtle-gray border-b border-subtle-gray">
+          {[
+            { label: dict.metrics.totalSeats, value: totalSeats.toLocaleString() },
+            { label: dict.metrics.utilization, value: `${utilization}%` },
+            { label: dict.metrics.upcomingRenewal, value: dict.renewalLabel },
+          ].map((m) => (
+            <div key={m.label} className="bg-deep-space p-3.5">
+              <p className="text-[10px] uppercase tracking-wider text-muted-text">
+                {m.label}
+              </p>
+              <p className="mt-1 text-base font-semibold text-ghost-white truncate">
+                {m.value}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* License rows */}
+        <ul className="px-4 py-4 space-y-2.5">
+          {LICENSE_ROWS.map((row) => {
+            const pct = Math.round((row.used / row.total) * 100);
+            const tone =
+              pct >= 95
+                ? "bg-amber-400"
+                : pct >= 80
+                ? "bg-polar-blue"
+                : "bg-neon-green";
+            return (
+              <li
+                key={row.name}
+                className="flex items-center gap-3 rounded-lg border border-subtle-gray bg-white/[0.025] px-3 py-2.5"
+              >
+                <span className="h-8 w-8 shrink-0 rounded-md bg-white/[0.08] border border-subtle-gray grid place-items-center p-1.5">
+                  <img src={row.logo} alt="" loading="lazy" className="h-full w-full object-contain" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="truncate text-sm font-medium text-ghost-white">
+                      {row.name}
+                    </p>
+                    <p className="shrink-0 text-xs text-muted-text tabular-nums">
+                      {row.used}/{row.total}
+                    </p>
+                  </div>
+                  <div className="mt-1.5 h-1 rounded-full bg-subtle-gray overflow-hidden">
+                    <div
+                      className={`h-full ${tone}`}
+                      style={{ width: `${pct}%` }}
+                    />
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Footer */}
+        <div className="flex items-center gap-2 px-5 py-3 border-t border-subtle-gray bg-white/[0.02]">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-polar-blue shrink-0" aria-hidden>
+            <path d="M12 2a10 10 0 0 1 10 10c0 5.5-10 10-10 10S2 17.5 2 12A10 10 0 0 1 12 2z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+          <p className="text-xs text-muted-text truncate">{dict.footer}</p>
+        </div>
+      </div>
+    </div>
   );
 }

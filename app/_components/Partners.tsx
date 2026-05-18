@@ -1,7 +1,5 @@
-type Partner = {
-  name: string;
-  src: string;
-};
+type Partner = { name: string; src: string };
+type PartnersDict = { label: string };
 
 const VL = (slug: string) =>
   `https://www.vectorlogo.zone/logos/${slug}/${slug}-ar21.svg`;
@@ -22,7 +20,7 @@ const partners: Partner[] = [
   { name: "Zoom", src: SI("zoom") },
 ];
 
-export function Partners() {
+export function Partners({ dict }: { dict: PartnersDict }) {
   return (
     <section
       id="partners"
@@ -32,7 +30,7 @@ export function Partners() {
         <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-muted-text">
           <span className="inline-flex items-center gap-2">
             <span className="h-px w-8 bg-subtle-gray" />
-            Đối tác chính hãng được uỷ quyền
+            {dict.label}
             <span className="h-px w-8 bg-subtle-gray" />
           </span>
         </p>

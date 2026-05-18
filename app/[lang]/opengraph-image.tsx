@@ -1,14 +1,44 @@
 import { ImageResponse } from "next/og";
+import { getDictionary, hasLocale, type Locale } from "./dictionaries";
 
-export const alt =
-  "Digi43 — Giải pháp phần mềm bản quyền cho doanh nghiệp";
+export const alt = "Digi43 — Enterprise Software Solutions";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 const LOGO_URL =
   "https://res.cloudinary.com/dz2hugofx/image/upload/e_trim/v1772079170/Digi_43_-_Logo_Official-05_qvwxf5.png";
 
-export default async function OG() {
+type CopySet = {
+  badge: string;
+  headlineLine1: string;
+  headlineLine2: string;
+  platforms: string;
+  cta: string;
+};
+
+const copy: Record<Locale, CopySet> = {
+  vi: {
+    badge: "Enterprise Software Solutions",
+    headlineLine1: "Giải pháp phần mềm",
+    headlineLine2: "doanh nghiệp",
+    platforms: "Adobe · Microsoft · Autodesk · Atlassian · AWS · Azure",
+    cta: "Đăng ký tư vấn →",
+  },
+  en: {
+    badge: "Enterprise Software Solutions",
+    headlineLine1: "Enterprise software solutions",
+    headlineLine2: "for modern teams",
+    platforms: "Adobe · Microsoft · Autodesk · Atlassian · AWS · Azure",
+    cta: "Request consultation →",
+  },
+};
+
+export default async function OG(props: { params: Promise<{ lang: string }> }) {
+  const { lang } = await props.params;
+  const safeLocale: Locale = hasLocale(lang) ? lang : "vi";
+  const dict = await getDictionary(safeLocale);
+  const c = copy[safeLocale];
+
   return new ImageResponse(
     (
       <div
@@ -24,7 +54,6 @@ export default async function OG() {
           position: "relative",
         }}
       >
-        {/* Violet glow top-left */}
         <div
           style={{
             position: "absolute",
@@ -37,7 +66,6 @@ export default async function OG() {
             display: "flex",
           }}
         />
-        {/* Blue-violet orb bottom-right */}
         <div
           style={{
             position: "absolute",
@@ -50,7 +78,6 @@ export default async function OG() {
             display: "flex",
           }}
         />
-        {/* Pink accent middle-left */}
         <div
           style={{
             position: "absolute",
@@ -64,16 +91,13 @@ export default async function OG() {
           }}
         />
 
-        {/* Logo */}
         <div style={{ display: "flex", alignItems: "center" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={LOGO_URL} alt="Digi43" height={86} />
         </div>
 
-        {/* Spacer */}
         <div style={{ flex: 1, display: "flex" }} />
 
-        {/* Badge */}
         <div
           style={{
             display: "flex",
@@ -89,22 +113,21 @@ export default async function OG() {
             marginBottom: 28,
           }}
         >
-          Microsoft Solutions Partner · Authorized Reseller
+          {c.badge}
         </div>
 
-        {/* Headline */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            fontSize: 72,
+            fontSize: 64,
             lineHeight: 1.1,
             fontWeight: 700,
             letterSpacing: "-0.02em",
             color: "#ffffff",
           }}
         >
-          <span>Giải pháp phần mềm</span>
+          <span>{c.headlineLine1}</span>
           <span
             style={{
               backgroundImage:
@@ -114,11 +137,10 @@ export default async function OG() {
               display: "flex",
             }}
           >
-            bản quyền cho doanh nghiệp
+            {c.headlineLine2}
           </span>
         </div>
 
-        {/* Bottom row */}
         <div
           style={{
             marginTop: 36,
@@ -134,24 +156,11 @@ export default async function OG() {
               gap: 6,
             }}
           >
-            <div
-              style={{
-                color: "#f0f6fc",
-                fontSize: 22,
-                fontWeight: 500,
-                display: "flex",
-              }}
-            >
-              Microsoft · Adobe · Autodesk · AWS · Kaspersky · Veeam
+            <div style={{ color: "#f0f6fc", fontSize: 22, fontWeight: 500, display: "flex" }}>
+              {c.platforms}
             </div>
-            <div
-              style={{
-                color: "#9198a1",
-                fontSize: 18,
-                display: "flex",
-              }}
-            >
-              digi43.net · 0905 711 739 · sales@digi43.net
+            <div style={{ color: "#9198a1", fontSize: 18, display: "flex" }}>
+              digi43.net · {dict.contact.info.hotline === "Enterprise hotline" ? "+84" : ""} {dict.contact.info.hotline === "Enterprise hotline" ? "905 711 739" : "0905 711 739"} · sales@digi43.net
             </div>
           </div>
 
@@ -168,13 +177,11 @@ export default async function OG() {
               fontWeight: 600,
             }}
           >
-            Nhận tư vấn miễn phí →
+            {c.cta}
           </div>
         </div>
       </div>
     ),
-    {
-      ...size,
-    }
+    { ...size }
   );
 }

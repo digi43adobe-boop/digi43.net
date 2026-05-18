@@ -1,0 +1,358 @@
+{
+  "meta": {
+    "title": "Digi43 — Giải pháp phần mềm doanh nghiệp",
+    "titleTemplate": "%s | Digi43",
+    "description": "Triển khai, quản trị và mở rộng các nền tảng phần mềm doanh nghiệp — Creative, Productivity, Collaboration và Cloud Solutions. Đối tác công nghệ B2B tại Việt Nam.",
+    "ogAlt": "Digi43 — Giải pháp phần mềm doanh nghiệp cho đội ngũ hiện đại"
+  },
+  "nav": {
+    "solutions": "Giải pháp",
+    "platforms": "Nền tảng",
+    "services": "Dịch vụ",
+    "whyUs": "Vì sao chọn Digi43",
+    "contact": "Liên hệ",
+    "about": "Về chúng tôi",
+    "phone": "0905 711 739",
+    "cta": "Đăng ký tư vấn"
+  },
+  "hero": {
+    "badge": "Enterprise Software Solutions",
+    "title": "Giải pháp phần mềm doanh nghiệp",
+    "titleAccent": "cho đội ngũ hiện đại",
+    "subtitle": "Digi43 đồng hành cùng doanh nghiệp Việt Nam trong việc triển khai, quản trị và mở rộng các nền tảng phần mềm — từ creative, productivity, collaboration đến cloud operations.",
+    "ctaPrimary": "Đăng ký tư vấn",
+    "ctaSecondary": "Khám phá giải pháp",
+    "stats": {
+      "licensing": { "label": "Bản quyền", "value": "Chính hãng" },
+      "sla": { "label": "SLA phản hồi", "value": "15 phút" },
+      "support": { "label": "Hỗ trợ tiếng Việt", "value": "24/7" }
+    },
+    "dashboard": {
+      "title": "License Operations",
+      "subtitle": "Dashboard quản trị danh mục license",
+      "statusActive": "Đang vận hành",
+      "tabs": {
+        "inventory": "Inventory",
+        "renewals": "Renewals",
+        "users": "Users"
+      },
+      "metrics": {
+        "totalSeats": "Tổng seat đang quản lý",
+        "utilization": "Tỉ lệ sử dụng",
+        "upcomingRenewal": "Gia hạn sắp tới"
+      },
+      "renewalLabel": "Microsoft 365 E3 · 32 ngày",
+      "footer": "Quản trị tập trung qua Digi43 License Manager"
+    }
+  },
+  "partners": {
+    "label": "Các nền tảng phần mềm Digi43 triển khai cho khách hàng"
+  },
+  "solutions": {
+    "kicker": "Business Solutions",
+    "title": "Một đối tác. Mọi nền tảng phần mềm doanh nghiệp bạn cần.",
+    "subtitle": "Digi43 triển khai và quản trị các danh mục phần mềm chính cho creative, productivity và cloud operations.",
+    "groups": [
+      {
+        "category": "Creative Solutions",
+        "title": "Adobe Creative Cloud & Acrobat",
+        "description": "Adobe Creative Cloud for Teams & Enterprise, Adobe Acrobat for Business, Adobe Stock. Triển khai, provisioning người dùng và tư vấn workflow cho đội ngũ creative, marketing và media.",
+        "features": [
+          "Creative Cloud for Teams & Enterprise",
+          "Acrobat Pro for Business",
+          "Adobe Stock & workflow consulting"
+        ]
+      },
+      {
+        "category": "Productivity & Collaboration",
+        "title": "Microsoft 365, Windows & Atlassian",
+        "description": "Microsoft 365 Business / Enterprise, Microsoft Copilot, Windows Enterprise, Atlassian Jira & Confluence. Quản trị license, tích hợp identity và provisioning tự động.",
+        "features": [
+          "Microsoft 365 Business / Enterprise",
+          "Windows 11 & Windows Server",
+          "Atlassian Jira & Confluence"
+        ]
+      },
+      {
+        "category": "Cloud & Infrastructure",
+        "title": "AWS, Azure & Google Cloud",
+        "description": "Hỗ trợ thiết kế kiến trúc, lập kế hoạch Reserved Instance / Savings Plan, tối ưu chi phí FinOps và migration sang cloud công cộng.",
+        "features": [
+          "Reserved Instances & Savings Plans",
+          "FinOps cost optimization",
+          "Migration & modernization"
+        ]
+      }
+    ],
+    "cta": "Trao đổi giải pháp phù hợp"
+  },
+  "license": {
+    "kicker": "License Management",
+    "title": "Quản trị license trọn vòng đời",
+    "subtitle": "Digi43 không chỉ cung cấp license — chúng tôi vận hành nó. Từ thiết kế entitlement, provisioning, đến gia hạn, true-up reporting và sẵn sàng audit.",
+    "tiles": [
+      {
+        "step": "01",
+        "title": "Entitlement design",
+        "desc": "Khảo sát hiện trạng, phân loại người dùng và thiết kế danh mục license tối ưu cho từng nhóm vai trò."
+      },
+      {
+        "step": "02",
+        "title": "Deployment & provisioning",
+        "desc": "Triển khai qua Azure AD / Google Workspace, cấu hình SSO, provisioning tự động qua SCIM, migrate dữ liệu."
+      },
+      {
+        "step": "03",
+        "title": "Renewal & optimization",
+        "desc": "Cảnh báo gia hạn trước 60 ngày, phân tích sử dụng, đề xuất right-sizing và báo cáo true-up."
+      },
+      {
+        "step": "04",
+        "title": "Managed support 24/7",
+        "desc": "Phản hồi 15 phút, target khắc phục P1 trong 4 giờ, báo cáo license health-check theo quý."
+      }
+    ],
+    "sla": {
+      "title": "Cam kết SLA cho khách hàng doanh nghiệp",
+      "subtitle": "Phản hồi trong 15 phút · Khắc phục sự cố P1 trong 4 giờ · Báo cáo health-check license hàng quý.",
+      "metrics": [
+        { "v": "15p", "l": "Phản hồi" },
+        { "v": "4h", "l": "Khắc phục P1" },
+        { "v": "99.9%", "l": "Uptime portal" }
+      ]
+    }
+  },
+  "whyUs": {
+    "kicker": "Vì sao chọn Digi43",
+    "title": "Đối tác phần mềm doanh nghiệp cho đội ngũ vận hành",
+    "subtitle": "Chúng tôi không chỉ bán license. Digi43 đồng hành cùng doanh nghiệp ở mọi giai đoạn — từ tư vấn, mua sắm, triển khai đến vận hành và tối ưu lâu dài.",
+    "cta": "Đặt lịch tư vấn 1:1",
+    "reasons": [
+      {
+        "title": "Quy trình mua sắm theo chuẩn hãng",
+        "desc": "Phần mềm được lấy qua kênh phân phối được hãng phê duyệt. Hoá đơn VAT đầy đủ, audit trail rõ ràng."
+      },
+      {
+        "title": "License operations, không chỉ là bán hàng",
+        "desc": "Provisioning, governance, gia hạn và báo cáo là dịch vụ cốt lõi — không phải thứ thêm vào sau."
+      },
+      {
+        "title": "Đội ngũ địa phương, chuẩn toàn cầu",
+        "desc": "Kỹ sư người Việt vận hành theo chuẩn dịch vụ quốc tế. Trao đổi bằng tiếng Việt, tài liệu song ngữ."
+      },
+      {
+        "title": "Compliance trước tiên",
+        "desc": "Tuân thủ Luật Sở hữu trí tuệ Việt Nam, Nghị định 22/2018 và yêu cầu compliance của hãng."
+      },
+      {
+        "title": "Single point of contact",
+        "desc": "Một account manager phụ trách xuyên suốt mọi nền tảng phần mềm trong danh mục của doanh nghiệp."
+      },
+      {
+        "title": "Portal quản trị tập trung",
+        "desc": "Theo dõi seat đang dùng, cảnh báo gia hạn và báo cáo sử dụng — tất cả trong một dashboard duy nhất."
+      }
+    ]
+  },
+  "industries": {
+    "kicker": "Lĩnh vực phục vụ",
+    "title": "Giải pháp phù hợp cho mọi ngành nghề",
+    "subtitle": "Từ doanh nghiệp lớn đến startup tăng trưởng nhanh — Digi43 tư vấn license phù hợp với đặc thù vận hành của từng lĩnh vực.",
+    "list": [
+      "Tài chính – Ngân hàng",
+      "Sản xuất & FMCG",
+      "Giáo dục & Đào tạo",
+      "Xây dựng & BĐS",
+      "Y tế & Dược phẩm",
+      "Bán lẻ & TMĐT",
+      "Logistics",
+      "Cơ quan nhà nước"
+    ],
+    "commitments": [
+      { "v": "Chính hãng", "l": "License đi qua kênh phân phối được hãng phê duyệt, hoá đơn VAT đầy đủ" },
+      { "v": "15 phút", "l": "SLA phản hồi yêu cầu hỗ trợ qua hotline, email hoặc Zalo" },
+      { "v": "24/7", "l": "Đội ngũ kỹ thuật tiếng Việt sẵn sàng xử lý sự cố" },
+      { "v": "Tối ưu chi phí", "l": "Tư vấn lựa chọn gói EA / CSP / Volume Licensing phù hợp" }
+    ]
+  },
+  "faq": {
+    "kicker": "FAQ",
+    "title": "Câu hỏi thường gặp từ doanh nghiệp",
+    "items": [
+      {
+        "q": "Digi43 lấy license từ kênh nào?",
+        "a": "Chúng tôi lấy phần mềm qua kênh phân phối được hãng phê duyệt tại Việt Nam và khu vực. Mọi license đều có chứng từ hợp lệ và hoá đơn VAT đầy đủ. Chứng nhận đối tác cụ thể với từng hãng có thể chia sẻ dưới NDA khi cần."
+      },
+      {
+        "q": "Triển khai cho 100+ user diễn ra như thế nào?",
+        "a": "Quy trình chuẩn bao gồm tích hợp Azure AD / Google Workspace, cấu hình SSO, provisioning tự động qua SCIM và báo cáo named-user. Dự án lớn có project manager dedicated."
+      },
+      {
+        "q": "SLA hỗ trợ ra sao?",
+        "a": "Phản hồi trong 15 phút qua hotline và email trong giờ làm việc. Target khắc phục sự cố P1 trong 4 giờ. Báo cáo license health-check theo quý cho khách hàng doanh nghiệp."
+      },
+      {
+        "q": "Có hỗ trợ doanh nghiệp đa quốc gia không?",
+        "a": "Có. Pháp nhân thanh toán tại Việt Nam (xuất hoá đơn VAT), service delivery bằng cả tiếng Việt và tiếng Anh. Chúng tôi phối hợp với đội procurement toàn cầu của khách hàng."
+      },
+      {
+        "q": "Quy trình gia hạn thế nào?",
+        "a": "Thông báo gia hạn trước 60 ngày kèm phân tích usage và đề xuất right-sizing. True-up reporting cho phần over-deployment. Consolidated PO cho gia hạn nhiều sản phẩm cùng lúc."
+      },
+      {
+        "q": "Có thể migrate license từ reseller khác sang Digi43 không?",
+        "a": "Có. Transfer license, đối soát entitlement và re-provisioning user là một phần trong onboarding playbook của chúng tôi."
+      }
+    ]
+  },
+  "contact": {
+    "kicker": "Liên hệ kinh doanh",
+    "title": "Trao đổi với đội ngũ enterprise của chúng tôi",
+    "subtitle": "Để lại thông tin — đội ngũ tư vấn của Digi43 sẽ liên hệ trong vòng 24 giờ làm việc kèm bảng đề xuất giải pháp phù hợp.",
+    "info": {
+      "hotline": "Hotline doanh nghiệp",
+      "email": "Email tư vấn",
+      "office": "Văn phòng Đà Nẵng",
+      "officeAddress": "03 Quang Trung, P. Hải Châu, TP. Đà Nẵng",
+      "hours": "Giờ làm việc",
+      "hoursValue": "T2 – T6: 8:30 – 17:30 · Hỗ trợ kỹ thuật 24/7"
+    },
+    "form": {
+      "name": "Họ và tên",
+      "namePlaceholder": "Nguyễn Văn A",
+      "phone": "Số điện thoại",
+      "phonePlaceholder": "0901 234 567",
+      "email": "Email công ty",
+      "emailPlaceholder": "ban@congty.vn",
+      "company": "Tên doanh nghiệp",
+      "companyPlaceholder": "Công ty TNHH ...",
+      "companySize": "Quy mô nhân sự",
+      "companySizes": ["1 – 50", "51 – 200", "201 – 1000", "Trên 1000"],
+      "solution": "Giải pháp quan tâm",
+      "solutions": [
+        "Adobe Creative Cloud / Acrobat",
+        "Microsoft 365 / Copilot",
+        "Windows & Windows Server",
+        "Autodesk (AutoCAD, Revit...)",
+        "Atlassian Jira / Confluence",
+        "Cloud (AWS / Azure / Google Cloud)",
+        "Cybersecurity / Endpoint",
+        "Khác — tư vấn tổng thể"
+      ],
+      "timeline": "Thời điểm triển khai",
+      "timelines": ["Trong 1 tháng", "1 – 3 tháng", "3 – 6 tháng", "Đang khảo sát"],
+      "message": "Mô tả nhu cầu (tuỳ chọn)",
+      "messagePlaceholder": "Số lượng license, yêu cầu đặc thù, hệ thống hiện tại...",
+      "submit": "Gửi yêu cầu báo giá",
+      "submitting": "Đang gửi...",
+      "successTitle": "Cảm ơn bạn đã liên hệ!",
+      "successBody": "Yêu cầu đã được gửi tới sales@digi43.net. Đội ngũ Digi43 sẽ phản hồi trong 24 giờ làm việc.",
+      "successAgain": "Gửi yêu cầu khác",
+      "errorMissingKey": "Form chưa được cấu hình. Vui lòng gọi hotline 0905 711 739 hoặc email sales@digi43.net.",
+      "errorGeneric": "Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ trực tiếp.",
+      "errorNetwork": "Không thể kết nối tới máy chủ. Vui lòng kiểm tra mạng và thử lại.",
+      "privacy": "Bằng việc gửi form, bạn đồng ý với chính sách bảo mật của Digi43.",
+      "required": "*"
+    }
+  },
+  "footer": {
+    "tagline": "Digi43 là đối tác triển khai giải pháp phần mềm doanh nghiệp tại Việt Nam — phân phối các nền tảng Microsoft, Adobe, Autodesk và nhiều hãng phần mềm hàng đầu thế giới.",
+    "address": "Địa chỉ",
+    "addressValue": "03 Quang Trung, P. Hải Châu, TP. Đà Nẵng",
+    "hotline": "Hotline",
+    "email": "Email",
+    "cols": {
+      "solutions": {
+        "title": "Giải pháp",
+        "items": [
+          "Adobe Creative Cloud",
+          "Microsoft 365 & Copilot",
+          "Windows & Windows Server",
+          "Autodesk AEC / M&E",
+          "Atlassian Jira / Confluence",
+          "Cloud Infrastructure"
+        ]
+      },
+      "services": {
+        "title": "Dịch vụ",
+        "items": [
+          "License management",
+          "Deployment & migration",
+          "User provisioning & SSO",
+          "Renewal management",
+          "Managed support 24/7"
+        ]
+      },
+      "company": {
+        "title": "Công ty",
+        "items": [
+          { "label": "Về Digi43", "href": "/about" },
+          { "label": "Tin tức", "href": "#" },
+          { "label": "Tuyển dụng", "href": "#" },
+          { "label": "Liên hệ", "href": "#contact" }
+        ]
+      }
+    },
+    "legal": {
+      "copyright": "© {year} CÔNG TY TNHH DIGI43 MEDIA · MST: 0402269843",
+      "terms": "Điều khoản dịch vụ",
+      "privacy": "Chính sách bảo mật",
+      "cookie": "Cookie",
+      "trademark": "Tên các nền tảng phần mềm được nhắc tới thuộc về chủ sở hữu nhãn hiệu tương ứng."
+    }
+  },
+  "about": {
+    "metaTitle": "Về Digi43",
+    "kicker": "Về chúng tôi",
+    "title": "Đối tác triển khai giải pháp phần mềm doanh nghiệp tại Việt Nam",
+    "lead": "Digi43 ra đời năm 2025 với một niềm tin đơn giản: doanh nghiệp Việt Nam xứng đáng được tiếp cận các nền tảng phần mềm enterprise hàng đầu thế giới, với chất lượng triển khai và dịch vụ ngang tầm các thị trường phát triển.",
+    "story": {
+      "title": "Câu chuyện của chúng tôi",
+      "paragraphs": [
+        "Được thành lập năm 2025 tại Đà Nẵng, Digi43 ra đời từ trải nghiệm thực tế của đội ngũ sáng lập sau nhiều năm làm việc trong ngành Creative & IT — chứng kiến những doanh nghiệp Việt mua phần mềm qua các kênh không chính thống, đối mặt với rủi ro audit, không có hỗ trợ kỹ thuật chuyên sâu khi cần.",
+        "Chúng tôi xây dựng Digi43 để giải quyết khoảng trống đó: một đối tác công nghệ nói tiếng Việt, làm việc theo chuẩn quốc tế, lấy license từ kênh được hãng phê duyệt, và đi cùng khách hàng từ ngày đầu tư vấn cho tới ngày gia hạn năm thứ năm.",
+        "Triết lý của chúng tôi: license chỉ là điểm khởi đầu. Giá trị thật sự nằm ở việc phần mềm được triển khai đúng, người dùng được provisioning đúng, chi phí được tối ưu liên tục, và doanh nghiệp luôn sẵn sàng cho mọi đợt audit."
+      ]
+    },
+    "values": {
+      "title": "Giá trị cốt lõi",
+      "items": [
+        {
+          "title": "Compliance trước tiên",
+          "desc": "Mọi license đều có chứng từ hợp lệ. Không grey market, không key crack, không tài khoản chia sẻ."
+        },
+        {
+          "title": "Dịch vụ thật, không chỉ là sale",
+          "desc": "Sau khi ký hợp đồng, công việc của chúng tôi mới bắt đầu. Provisioning, hỗ trợ và gia hạn là dịch vụ cốt lõi."
+        },
+        {
+          "title": "Tôn trọng đối tác phần mềm",
+          "desc": "Chúng tôi tuân thủ điều khoản phân phối của hãng, không bao giờ misrepresent sản phẩm hay tự gán chứng nhận."
+        },
+        {
+          "title": "Hướng tới doanh nghiệp Việt",
+          "desc": "Hoá đơn VAT, tài liệu tiếng Việt, hỗ trợ tiếng Việt — mọi thứ được thiết kế cho cách doanh nghiệp Việt vận hành."
+        }
+      ]
+    },
+    "company": {
+      "title": "Thông tin công ty",
+      "name": "CÔNG TY TNHH DIGI43 MEDIA",
+      "taxLabel": "Mã số doanh nghiệp",
+      "tax": "0402269843",
+      "founded": "Năm thành lập",
+      "foundedValue": "2025",
+      "hqLabel": "Trụ sở chính",
+      "hq": "03 Quang Trung, P. Hải Châu, TP. Đà Nẵng",
+      "emailLabel": "Email",
+      "email": "sales@digi43.net",
+      "phoneLabel": "Hotline",
+      "phone": "0905 711 739"
+    },
+    "cta": {
+      "title": "Sẵn sàng trao đổi về dự án phần mềm của bạn?",
+      "primary": "Đăng ký tư vấn",
+      "secondary": "Liên hệ trực tiếp"
+    }
+  }
+}

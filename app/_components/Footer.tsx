@@ -1,25 +1,40 @@
+import Link from "next/link";
 import { Logo } from "./Logo";
 
-const links = {
-  "Giải pháp": [
-    "Microsoft 365 & Copilot",
-    "Adobe Creative Cloud",
-    "Autodesk AEC / M&E",
-    "Cybersecurity",
-    "Backup & DR",
-    "Cloud Infrastructure",
-  ],
-  "Dịch vụ": [
-    "Tư vấn license",
-    "Triển khai & Migration",
-    "Đào tạo người dùng",
-    "Hỗ trợ kỹ thuật 24/7",
-    "License Management Portal",
-  ],
-  "Công ty": ["Về Digi43", "Đối tác hãng", "Tin tức & Blog", "Tuyển dụng", "Liên hệ"],
+type Locale = "vi" | "en";
+
+type CompanyItem = { label: string; href: string };
+
+type FooterDict = {
+  tagline: string;
+  address: string;
+  addressValue: string;
+  hotline: string;
+  email: string;
+  cols: {
+    solutions: { title: string; items: string[] };
+    services: { title: string; items: string[] };
+    company: { title: string; items: CompanyItem[] };
+  };
+  legal: {
+    copyright: string;
+    terms: string;
+    privacy: string;
+    cookie: string;
+    trademark: string;
+  };
 };
 
-export function Footer() {
+function localized(href: string, lang: Locale) {
+  if (!href.startsWith("/")) return href;
+  if (href === "/" || href.startsWith(`/${lang}`)) return href;
+  return `/${lang}${href}`;
+}
+
+export function Footer({ dict, lang }: { dict: FooterDict; lang: Locale }) {
+  const year = new Date().getFullYear();
+  const copyright = dict.legal.copyright.replace("{year}", String(year));
+
   return (
     <footer className="relative bg-midnight-ink text-faded-silver border-t border-subtle-gray">
       <div className="container-page py-16 lg:py-20">
@@ -27,23 +42,21 @@ export function Footer() {
           <div className="lg:col-span-4 space-y-5">
             <Logo />
             <p className="text-sm leading-relaxed text-faded-silver max-w-sm">
-              Digi43 là đối tác cung cấp giải pháp phần mềm bản quyền cho doanh
-              nghiệp Việt Nam — phân phối Microsoft, Adobe, Autodesk và nhiều
-              hãng phần mềm hàng đầu thế giới.
+              {dict.tagline}
             </p>
             <ul className="space-y-2 text-sm text-faded-silver">
               <li className="flex gap-2">
-                <span className="text-muted-text shrink-0">Địa chỉ:</span>
-                <span>03 Quang Trung, P. Hải Châu, TP. Đà Nẵng</span>
+                <span className="text-muted-text shrink-0">{dict.address}:</span>
+                <span>{dict.addressValue}</span>
               </li>
               <li className="flex gap-2">
-                <span className="text-muted-text shrink-0">Hotline:</span>
+                <span className="text-muted-text shrink-0">{dict.hotline}:</span>
                 <a href="tel:+84905711739" className="link-accent">
                   0905 711 739
                 </a>
               </li>
               <li className="flex gap-2">
-                <span className="text-muted-text shrink-0">Email:</span>
+                <span className="text-muted-text shrink-0">{dict.email}:</span>
                 <a href="mailto:sales@digi43.net" className="link-accent">
                   sales@digi43.net
                 </a>
@@ -65,37 +78,84 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-8 grid sm:grid-cols-3 gap-8">
-            {Object.entries(links).map(([title, items]) => (
-              <div key={title}>
-                <h4 className="text-sm font-semibold text-ghost-white">{title}</h4>
-                <ul className="mt-4 space-y-2.5">
-                  {items.map((item) => (
-                    <li key={item}>
-                      <a href="#" className="text-sm text-faded-silver hover:text-polar-blue transition">
-                        {item}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            <FooterColumn
+              title={dict.cols.solutions.title}
+              items={dict.cols.solutions.items.map((label) => ({ label, href: "#products" }))}
+              lang={lang}
+            />
+            <FooterColumn
+              title={dict.cols.services.title}
+              items={dict.cols.services.items.map((label) => ({ label, href: "#services" }))}
+              lang={lang}
+            />
+            <FooterColumn
+              title={dict.cols.company.title}
+              items={dict.cols.company.items}
+              lang={lang}
+            />
           </div>
         </div>
 
-        <div className="mt-14 pt-8 border-t border-subtle-gray flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <p className="text-xs text-muted-text leading-relaxed">
-            © {new Date().getFullYear()} CÔNG TY TNHH DIGI43 MEDIA · MST: 0402269843
-            <br className="md:hidden" />
-            <span className="hidden md:inline"> · </span>
-            Bản quyền thuộc về Digi43 Media.
+        <div className="mt-14 pt-8 border-t border-subtle-gray space-y-3">
+          <p className="text-[11px] text-muted-text leading-relaxed">
+            {dict.legal.trademark}
           </p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted-text">
-            <a href="#" className="hover:text-polar-blue transition">Điều khoản dịch vụ</a>
-            <a href="#" className="hover:text-polar-blue transition">Chính sách bảo mật</a>
-            <a href="#" className="hover:text-polar-blue transition">Cookie</a>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <p className="text-xs text-muted-text leading-relaxed">{copyright}</p>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted-text">
+              <Link href={`/${lang}/terms`} className="hover:text-polar-blue transition">
+                {dict.legal.terms}
+              </Link>
+              <Link href={`/${lang}/privacy`} className="hover:text-polar-blue transition">
+                {dict.legal.privacy}
+              </Link>
+              <a href="#" className="hover:text-polar-blue transition">
+                {dict.legal.cookie}
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({
+  title,
+  items,
+  lang,
+}: {
+  title: string;
+  items: CompanyItem[];
+  lang: Locale;
+}) {
+  return (
+    <div>
+      <h4 className="text-sm font-semibold text-ghost-white">{title}</h4>
+      <ul className="mt-4 space-y-2.5">
+        {items.map((item) => {
+          const isAnchor = item.href.startsWith("#") || item.href.startsWith("http");
+          return (
+            <li key={item.label}>
+              {isAnchor ? (
+                <a
+                  href={item.href}
+                  className="text-sm text-faded-silver hover:text-polar-blue transition"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  href={localized(item.href, lang)}
+                  className="text-sm text-faded-silver hover:text-polar-blue transition"
+                >
+                  {item.label}
+                </Link>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
