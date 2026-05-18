@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Inter } from "next/font/google";
+import "../globals.css";
 import { logoutAction } from "./actions";
 import { isAuthenticated } from "../lib/auth";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin", "vietnamese"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Digi43 Admin",
@@ -18,47 +27,49 @@ export default async function AdminLayout({
   const authed = await isAuthenticated();
 
   return (
-    <div className="min-h-screen bg-deep-space text-ghost-white">
-      {authed && (
-        <header className="border-b border-subtle-gray bg-code-canvas/80 backdrop-blur">
-          <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-6">
-              <Link
-                href="/admin"
-                className="text-sm font-semibold text-ghost-white hover:text-polar-blue transition"
-              >
-                Digi43 Admin
-              </Link>
-              <nav className="flex items-center gap-1">
-                <Link href="/admin" className="btn-ghost text-sm">
-                  Bài viết
+    <html lang="vi" className={`${inter.variable} h-full antialiased`}>
+      <body className="min-h-full font-sans bg-deep-space text-ghost-white">
+        {authed && (
+          <header className="border-b border-subtle-gray bg-code-canvas/80 backdrop-blur">
+            <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-6">
+                <Link
+                  href="/admin"
+                  className="text-sm font-semibold text-ghost-white hover:text-polar-blue transition"
+                >
+                  Digi43 Admin
                 </Link>
-                <Link href="/admin/new" className="btn-ghost text-sm">
-                  Tạo bài mới
-                </Link>
-              </nav>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link
-                href="/vi/blog"
-                target="_blank"
-                className="text-xs text-faded-silver hover:text-polar-blue transition"
-              >
-                Xem trang Tin tức ↗
-              </Link>
-              <form action={logoutAction}>
-                <button
-                  type="submit"
+                <nav className="flex items-center gap-1">
+                  <Link href="/admin" className="btn-ghost text-sm">
+                    Bài viết
+                  </Link>
+                  <Link href="/admin/new" className="btn-ghost text-sm">
+                    Tạo bài mới
+                  </Link>
+                </nav>
+              </div>
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/vi/blog"
+                  target="_blank"
                   className="text-xs text-faded-silver hover:text-polar-blue transition"
                 >
-                  Đăng xuất
-                </button>
-              </form>
+                  Xem trang Tin tức ↗
+                </Link>
+                <form action={logoutAction}>
+                  <button
+                    type="submit"
+                    className="text-xs text-faded-silver hover:text-polar-blue transition"
+                  >
+                    Đăng xuất
+                  </button>
+                </form>
+              </div>
             </div>
-          </div>
-        </header>
-      )}
-      <main>{children}</main>
-    </div>
+          </header>
+        )}
+        <main>{children}</main>
+      </body>
+    </html>
   );
 }
