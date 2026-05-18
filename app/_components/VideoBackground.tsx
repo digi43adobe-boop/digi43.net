@@ -71,15 +71,16 @@ export function VideoBackground({
     >
       <video
         ref={videoRef}
-        src={src}
-        poster={poster}
         autoPlay
         muted
         loop
         playsInline
         preload="none"
         className="absolute inset-0 h-full w-full object-cover"
-      />
+        poster={poster}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
       <div
         className="absolute inset-0 bg-deep-space"
         style={{ opacity: overlay }}
