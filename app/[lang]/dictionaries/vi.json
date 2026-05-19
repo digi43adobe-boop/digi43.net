@@ -236,6 +236,15 @@
       }
     ]
   },
+  "featuredNews": {
+    "kicker": "Tin tức",
+    "title": "Góc nhìn mới nhất từ Digi43",
+    "subtitle": "Bài viết thực dụng về license, deployment và governance cho doanh nghiệp Việt Nam.",
+    "viewAll": "Xem tất cả",
+    "readMore": "Đọc bài",
+    "readingMinutes": "{n} phút đọc",
+    "empty": "Chưa có bài viết nào."
+  },
   "contact": {
     "kicker": "Liên hệ kinh doanh",
     "title": "Trao đổi với đội ngũ enterprise của chúng tôi",

@@ -151,6 +151,8 @@ export async function savePostAction(formData: FormData): Promise<void> {
   }
   await upsertPost(post);
 
+  revalidatePath("/vi");
+  revalidatePath("/en");
   revalidatePath("/vi/blog");
   revalidatePath("/en/blog");
   revalidatePath(`/vi/blog/${slug}`);
@@ -170,6 +172,8 @@ export async function deletePostAction(formData: FormData): Promise<void> {
   const slug = String(formData.get("slug") ?? "").trim();
   if (!slug) throw new Error("Missing slug");
   await deletePost(slug);
+  revalidatePath("/vi");
+  revalidatePath("/en");
   revalidatePath("/vi/blog");
   revalidatePath("/en/blog");
   revalidatePath(`/vi/blog/${slug}`);

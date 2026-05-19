@@ -236,6 +236,15 @@
       }
     ]
   },
+  "featuredNews": {
+    "kicker": "News",
+    "title": "Fresh perspectives from Digi43",
+    "subtitle": "Practical takes on licensing, deployment, and governance for enterprises in Vietnam.",
+    "viewAll": "View all",
+    "readMore": "Read article",
+    "readingMinutes": "{n} min read",
+    "empty": "No posts yet."
+  },
   "contact": {
     "kicker": "Talk to sales",
     "title": "Talk to our enterprise team",

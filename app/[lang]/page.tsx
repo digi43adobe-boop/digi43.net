@@ -8,8 +8,11 @@ import { LicenseManagement } from "../_components/LicenseManagement";
 import { WhyUs } from "../_components/WhyUs";
 import { Industries } from "../_components/Industries";
 import { FAQ } from "../_components/FAQ";
+import { FeaturedNews } from "../_components/FeaturedNews";
 import { Contact } from "../_components/Contact";
 import { Footer } from "../_components/Footer";
+
+export const dynamic = "force-dynamic";
 
 export default async function Page(props: PageProps<"/[lang]">) {
   const { lang } = await props.params;
@@ -27,6 +30,7 @@ export default async function Page(props: PageProps<"/[lang]">) {
         <WhyUs dict={dict.whyUs} />
         <Industries dict={dict.industries} />
         <FAQ dict={dict.faq} />
+        <FeaturedNews dict={dict.featuredNews} lang={lang} />
         <Contact dict={dict.contact} />
       </main>
       <Footer dict={dict.footer} lang={lang} />
