@@ -24,6 +24,8 @@ function slugify(input: string): string {
 }
 
 const IMAGE_RE = /^!\[([^\]]*)\]\((\S+)\)\s*$/;
+const YOUTUBE_RE =
+  /^(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})(?:[?&#].*)?$/;
 
 function parseBlocks(raw: string): Block[] {
   const lines = raw.split(/\r?\n/);
@@ -44,11 +46,15 @@ function parseBlocks(raw: string): Block[] {
       continue;
     }
     const imageMatch = line.match(IMAGE_RE);
+    const youtubeMatch = !imageMatch ? line.match(YOUTUBE_RE) : null;
     if (imageMatch) {
       flushList();
       const alt = imageMatch[1].trim();
       const src = imageMatch[2].trim();
       blocks.push(alt ? { type: "image", src, alt } : { type: "image", src });
+    } else if (youtubeMatch) {
+      flushList();
+      blocks.push({ type: "youtube", videoId: youtubeMatch[1] });
     } else if (line.startsWith("## ")) {
       flushList();
       blocks.push({ type: "h2", text: line.slice(3).trim() });

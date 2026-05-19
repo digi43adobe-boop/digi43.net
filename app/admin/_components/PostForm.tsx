@@ -25,6 +25,8 @@ function blocksToText(blocks: Block[]): string {
           return `> ${b.text}`;
         case "image":
           return `![${b.alt ?? ""}](${b.src})`;
+        case "youtube":
+          return `https://www.youtube.com/watch?v=${b.videoId}`;
       }
     })
     .join("\n\n");
@@ -256,7 +258,7 @@ export function PostForm({ initial, mode }: Props) {
           </Field>
           <BodyEditor
             label="Nội dung (VI)"
-            hint='Mỗi dòng = 1 đoạn. "## " = tiêu đề lớn · "### " = tiêu đề nhỏ · "- " = danh sách · "> " = highlight · "![](url)" = ảnh'
+            hint='Mỗi dòng = 1 đoạn. "## " = tiêu đề lớn · "### " = tiêu đề nhỏ · "- " = danh sách · "> " = highlight · "![](url)" = ảnh · dán URL YouTube 1 dòng riêng = video nhúng'
             name="body_vi"
             defaultValue={
               initial?.content.vi.blocks
@@ -296,7 +298,7 @@ export function PostForm({ initial, mode }: Props) {
           </Field>
           <BodyEditor
             label="Body (EN)"
-            hint='One line per paragraph. "## " = h2 · "### " = h3 · "- " = list · "> " = callout · "![](url)" = image'
+            hint='One line per paragraph. "## " = h2 · "### " = h3 · "- " = list · "> " = callout · "![](url)" = image · paste a YouTube URL on its own line = embed'
             name="body_en"
             defaultValue={
               initial?.content.en.blocks

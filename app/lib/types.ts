@@ -6,7 +6,8 @@ export type Block =
   | { type: "h3"; text: string }
   | { type: "ul"; items: string[] }
   | { type: "callout"; text: string }
-  | { type: "image"; src: string; alt?: string };
+  | { type: "image"; src: string; alt?: string }
+  | { type: "youtube"; videoId: string };
 
 export type LocalisedPost = {
   title: string;

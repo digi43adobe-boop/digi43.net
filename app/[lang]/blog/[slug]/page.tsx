@@ -292,5 +292,21 @@ function RenderBlock({ block }: { block: Block }) {
           )}
         </figure>
       );
+    case "youtube":
+      return (
+        <div className="!my-10 overflow-hidden rounded-2xl border border-subtle-gray bg-code-canvas">
+          <div className="relative aspect-video">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${block.videoId}`}
+              title="YouTube video"
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full"
+            />
+          </div>
+        </div>
+      );
   }
 }
